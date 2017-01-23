@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    	body{
+    		background: #ccc;
+    		margin: 0px;
+    		padding: 0px;
+    	}
+    	nav{
+    		background: #666;
+    	}
+    	nav:after{
+    		display: table;
+    		content: "";
+    		width: 0;
+    		clear: both;
+    	}
+    	h1{
+    		width: 200px;
+    		height: 95px;
+    		float: left;
+    	}
+    	nav ul{
+    		float: right;
+    		margin-top: 40px;
+    	}
+    	nav li{
+    		float: left;
+    		margin-left: 20px;
+    	}
+    	nav a{
+    		color: #fff;
+    	}
+    	.parag{
+			background: #fff;
+			margin: 20px;
+			padding: 20px;
+			border: 1px solid #808080;
+    	}
+    	.parag h3{
+    		color: #808080;
+    	}
+    	.parag p{
+    		text-indent: 2em;
+    	}
+    	.parag .author{
+    		color: #808080;
+    		text-indent: 0em;
+    	}
+    	.parag dd{
+    		border: 1px solid #C2C2C2;
+    		width: 240px;
+    		margin-top: 20px;
+    		padding: 20px 0px;
+    		text-align: center;
+    	}
+    	table{
+    		width: 100%;
+    		border-collapse:collapse;
+    		border: 1px solid #DFDFDF;
+    	}
+    	table thead{
+    		background: #3C3C3C;
+    		color: #fff;
+    	}
+    	table tfoot{
+    		background: #DFDFDF;
+    		border: 1px solid #DFDFDF;
+    	}
+    	table td{
+    		border: 1px solid #DFDFDF;
+    	}
+    	.side{
+    		border-left: 4px solid #BBBBBB; 
+    		padding: 10px;
+    		text-align: 
+    		
+    	}
+    	form div{
+    		margin: 10px 0px;
+    	}
+    	form span{
+    		display: inline-block;
+    		text-align: right;
+    		width: 30%;
+    	}
+    	form p{
+    		color: #808080;
+    		font-size: 14px;
+    		margin-left: 28.5%;
+    	}
+    	form #btn{
+			width: 100%;
+			height: 60px;
+			background: #20AFFF;
+			border: 0;
+			border-radius: 8px;
+			color: #fff;
+    	}
+		footer{
+    		width: 100%;
+    		height: 80px;
+    		background: #666;
+    		color: #fff;
+    		line-height: 80px;
+    		text-align: center;
+    	}
+    </style>
+</head>
+<body>
+<nav>
+	<h1><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="" width="180px"></h1>
+	<ul>
+	    <li><a href="#">导航链接一</a></li>
+	    <li><a href="#">导航链接二</a></li>
+	    <li><a href="#">导航链接三</a></li>
+	    <li><a href="#">导航链接四</a></li>
+	</ul>
+</nav>
+<article class="parag">
+    <h2>文章一级标题</h2>
+    <h3>文章二级标题</h3>
+    <p class="author">文章作者 文章发表时间</p>
+    <p>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，<br>换行了<br>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，换行了<br>这是一个很长的段落，这是一个很长的段落，<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长的段落，这是一个很长的段落，<strong>这里有个粗体字</strong>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落。</p>
+    <img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt="">
+    <p>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，<br>换行了<br>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，换行了<br>这是一个很长的段落，这是一个很长的段落，<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长的段落，这是一个很长的段落，<strong>这里有个粗体字</strong>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落。</p>
+</article>
+<article class="parag">
+    <h2>另一篇文章的一级标题</h2>
+    <h3>文章二级标题</h3>
+    <p class="author">文章作者 文章发表时间</p>
+    <p>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，<br>换行了<br>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，换行了<br>这是一个很长的段落，这是一个很长的段落，<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长的段落，这是一个很长的段落，<strong>这里有个粗体字</strong>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落。</p>
+    <img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt="">
+    <ul>
+	    <li>列表项目一</li>
+	    <li>列表项目二</li>
+	    <li>列表项目三</li>
+    </ul>
+</article>
+<article class="parag">
+    <h2>图片</h2>
+    <dl>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd>好看的图片<br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+    </dl>
+</article>
+<article class="parag">
+	<h2>最后一篇文章的一级标题</h2>
+	<h3>文章二级标题</h3>
+	<p class="author">文章作者 文章发表时间</p>
+
+	<ol>
+		<li>排名1</li>
+		<li>排名2</li>
+		<li>排名3</li>
+	</ol>
+	<p class="author">下面是一个表格，给表格加一个border</p>
+	<table border="0">
+	    <thead>
+	        <tr>
+	            <th>表头</th>
+	            <th>表头</th>
+	            <th>表头</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>表内容单元格</td>
+	            <td>表内容单元格</td>
+	            <td><a href="#">操作</a></td>
+	        </tr>
+	        <tr>
+	            <td>表内容单元格</td>
+				<td>表内容单元格</td>
+				<td><a href="#">操作</a></td>
+			</tr>
+			<tr>
+				<td>表内容单元格</td>
+				<td>表内容单元格</td>
+				<td><a href="#">操作</a></td>
+			</tr>
+			<tr>
+				<td>表内容单元格</td>
+				<td>表内容单元格</td>
+				<td><a href="#">操作</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>总计</td>
+				<td colspan="2">1000</td>
+			</tr>
+		</tfoot>
+	</table>
+</article>
+<article class="parag">
+	<h2 class="side">这里以后是一个侧栏，这里是侧栏的标题</h2>
+	<h3>侧栏注册窗口标题</h3>
+	<form >
+		<div>
+			<span>请输入邮箱地址</span>
+			<input type="text" id="mail" value="这里是一个文本输入框">
+		</div>
+		<p>邮箱地址请按格式要求输入</p>
+	</form>
+	<form>
+		<div>
+			<span>请输入密码</span>
+			<input type="text" id="pw1" value="这里是一个文本输入框">
+		</div>
+		<div>
+			<span>请重复输入密码</span>
+			<input type="text" id="pw2" value="这里是一个文本输入框">
+		</div>
+		<p>密码请为6-16位英文数字</p>	
+	</form>
+	<form action="" method="post">
+		<div>
+			<span>性别：</span>
+			<input name="sex" id="male" type="radio" value=""><label for="male">男</label>
+			<input name="sex" id="female" type="radio" value=""><label for="female">女</label>
+		</div>
+		<div>
+			<span>城市：</span>
+			<select name="" id="">
+				<option value="">北京</option>
+				<option value="">上海</option>
+			</select>
+		</div>
+		<div>
+			<span>爱好：</span>
+			<input type="checkbox" id="sport"><label for="sport">运动</label>
+			<input type="checkbox" id="art"><label for="art">艺术</label>
+			<input type="checkbox" id="science"><label for="science">科学</label>
+		</div>
+		<div>
+			<span>个人描述：</span>
+			<textarea name="" id="" cols="30" rows="2">
+				这是一个多行输入框，输入你的个人描述
+			</textarea>
+		</div>
+		<input id="btn" type="submit" value="确认提交">
+	</form>
+</article>
+
+<footer>版权所有&copy</footer>
+</body>
+</html>
