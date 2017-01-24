@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		background: #ccc;
+	}
+	header{
+		width: 100%;
+		background: #3B3B3B;
+		overflow: auto;
+	}
+	header h1{
+		width: 120px;
+		margin-left: 20px;
+	}
+	header nav{
+		width: 440px;
+		float: right;
+	}
+	nav ul li{
+		display: inline;
+		line-height: 58px;
+		margin-left: 20px;
+	}
+	nav ul a{
+		color: #fff;
+		text-decoration: none;
+	}
+	article{
+		margin: 20px 440px 0px 20px;
+		background: #fff;
+		padding: 20px;
+		border: 1px solid #A2A2A2;
+		box-shadow: 2px 2px 1px #A2A2A2;
+	}
+	article:after{
+		display: table; content: ""; width: 0px; clear: both;
+	}
+	h2,h3,p{
+		margin: 10px 0px;
+	}
+	h3{
+		color: #888888;
+	}
+	article span{
+		color: #888888;
+		font-size: 14px;
+	}
+	article p{
+		text-indent: 2em;
+		line-height: 24px;
+		font-size: 16px;
+	}
+	article ul{
+		list-style: none;
+		margin-left: 20px;
+	}
+	article ul li{
+		line-height: 24px;
+	}
+	article dd{
+		border: 1px solid #ccc;
+		padding: 0px 10px 10px 10px;
+		text-align: center;
+		float: left;
+		margin: 10px 10px 0px 0px;
+	}
+	article dd span{
+		line-height: 40px;
+		color: #000;
+	}
+	article ol{
+		margin-left: 40px;
+	}
+	article ol li{
+		line-height: 30px;
+		font-weight: bold;
+	}
+	article table{
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid #ccc;
+		line-height: 30px;
+	}
+	article table thead{
+		text-align: left;
+		color: #fff;
+		background: #3B3B3B;
+	}
+	article table td,th{
+		padding-left: 10px;
+		border: 1px solid #ccc;
+		padding-left: 10px;
+	}
+	article tfoot{
+		background: #ccc;
+	}
+	aside{
+		margin: 20px 20px 0px 20px;
+		background: #fff;
+		padding: 20px;
+		border: 1px solid #A2A2A2;
+		box-shadow: 2px 2px 1px #A2A2A2;
+		float: right;
+		width: 360px;
+	}
+	aside h2{
+		border-left: 4px solid #ccc;
+		padding-left: 10px;
+		line-height: 30px;
+	}
+	aside span{
+		vertical-align: top;
+		font-size: 14px;
+		display: inline-block;
+		width: 120px;
+		text-align: right;
+		height: 24px;
+		line-height: 24px;
+		margin-right: 10px;
+	}
+	aside p{
+		margin-left: 136px;
+		font-size: 12px;
+		color: #808080;
+	}
+	aside #btn{
+		width: 100%;
+		background: #7595FF;
+		border: none;
+		color: #fff;
+		height: 40px;
+		margin-top: 10px;
+		border-radius: 4px;
+	}
+	form textarea{
+		resize: disabled;
+	}
+	form div{
+		margin: 10px 0px;
+	}
+	form label{
+		margin-right: 10px;
+		font-size: 14px;
+	}
+	form #mail,#pw1,#pw2{
+		font-size: 14px;
+		height: 24px;
+		vertical-align: top;
+	}
+	footer{
+		width: 100%;
+		background: #3B3B3B;
+		height: 80px;
+		line-height: 80px;
+		text-align: center;	
+		color: #fff;
+		margin-top: 20px;
+		font-size: 14px;	
+	}
+	</style>
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+		    <li><a href="#">导航链接一</a></li>
+		    <li><a href="#">导航链接二</a></li>
+		    <li><a href="#">导航链接三</a></li>
+		    <li><a href="#">导航链接四</a></li>
+		</ul>
+	</nav>
+	<h1><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="" width="120px"></h1>
+</header>
+<aside>
+	<h2>这里是侧栏的标题</h2>
+	<form >
+		<div>
+			<span>请输入邮箱地址</span>
+			<input type="text" id="mail" value="这里是一个文本输入框">
+		</div>
+		<p>邮箱地址请按格式要求输入</p>
+	</form>
+	<form>
+		<div>
+			<span>请输入密码</span>
+			<input type="text" id="pw1" value="这里是一个文本输入框">
+		</div>
+		<div>
+			<span>请重复输入密码</span>
+			<input type="text" id="pw2" value="这里是一个文本输入框">
+		</div>
+		<p>密码请为6-16位英文数字</p>	
+	</form>
+	<form action="" method="post">
+		<div>
+			<span>性别：</span>
+			<input name="sex" id="male" type="radio" value=""><label for="male">男</label>
+			<input name="sex" id="female" type="radio" value=""><label for="female">女</label>
+		</div>
+		<div>
+			<span>城市：</span>
+			<select name="" id="">
+				<option value="">北京</option>
+				<option value="">上海</option>
+			</select>
+		</div>
+		<div>
+			<span>爱好：</span>
+			<input type="checkbox" id="sport"><label for="sport">运动</label>
+			<input type="checkbox" id="art"><label for="art">艺术</label>
+			<input type="checkbox" id="science"><label for="science">科学</label>
+		</div>
+		<div>
+			<span>个人描述：</span>
+			<textarea name="" id="" cols="30" rows="8">这是一个多行输入框，输入你的个人描述
+			</textarea>
+		</div>
+		<input id="btn" type="submit" value="确认提交">
+	</form>
+</aside>
+<article>
+    <h2>文章一级标题</h2>
+    <h3>文章二级标题</h3>
+    <span class="author">文章作者 文章发表时间</span>
+    <p>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，<br>换行了<br>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，换行了<br>这是一个很长的段落，这是一个很长的段落，<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长的段落，这是一个很长的段落，<strong>这里有个粗体字</strong>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落。</p>
+    <img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt="">
+    <p>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，<br>换行了<br>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，换行了<br>这是一个很长的段落，这是一个很长的段落，<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长的段落，这是一个很长的段落，<strong>这里有个粗体字</strong>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落。</p>
+</article>
+<article>
+    <h2>另一篇文章的一级标题</h2>
+    <h3>文章二级标题</h3>
+    <span class="author">文章作者 文章发表时间</span>
+    <p>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，<br>换行了<br>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，换行了<br>这是一个很长的段落，这是一个很长的段落，<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长的段落，这是一个很长的段落，<strong>这里有个粗体字</strong>这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落，这是一个很长的段落。</p>
+    <img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt="">
+    <ul>
+	    <li>列表项目一</li>
+	    <li>列表项目二</li>
+	    <li>列表项目三</li>
+    </ul>
+</article>
+<article>
+    <h2>图片</h2>
+    <dl>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+	    <dd><span>好看的图片</span><br><img src="http://tupian.enterdesk.com/2012/0801/gha/2/enterdesk%20%286%29.jpg.200.150.jpg" alt=""></dd>
+    </dl>
+</article>
+<article>
+	<h2>最后一篇文章的一级标题</h2>
+	<h3>文章二级标题</h3>
+	<span class="author">文章作者 文章发表时间</span>
+	<ol>
+		<li>排名1</li>
+		<li>排名2</li>
+		<li>排名3</li>
+	</ol>
+	<p class="author">下面是一个表格，给表格加一个border</p>
+	<table border="0">
+	    <thead>
+	        <tr>
+	            <th>表头</th>
+	            <th>表头</th>
+	            <th>表头</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>表内容单元格</td>
+	            <td>表内容单元格</td>
+	            <td><a href="#">操作</a></td>
+	        </tr>
+	        <tr>
+	            <td>表内容单元格</td>
+				<td>表内容单元格</td>
+				<td><a href="#">操作</a></td>
+			</tr>
+			<tr>
+				<td>表内容单元格</td>
+				<td>表内容单元格</td>
+				<td><a href="#">操作</a></td>
+			</tr>
+			<tr>
+				<td>表内容单元格</td>
+				<td>表内容单元格</td>
+				<td><a href="#">操作</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>总计</td>
+				<td colspan="2">1000</td>
+			</tr>
+		</tfoot>
+	</table>
+</article>
+
+
+<footer>版权所有&copy</footer>
+</body>
+</html>
