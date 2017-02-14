@@ -4,20 +4,22 @@
     list-style: none;
 }
 ul{
-    font-size: 0;
     min-width: 600px;
 }
 li{
-    background: #eeeeee;
-    border: 1px solid #999;
-    height: 50px;
-    display: inline-block;
+    float: left;
+    text-align: center;
+    padding: 0 10px;
+    margin: 10px 0;
+}
+div{
     box-sizing: border-box;
-    margin: 20px 10px 0 10px;
+    height: 50px;
+    border: 1px solid #999;
+    background: #eeeeee;
+    line-height: 50px;
     font-size: 14px;
     color: #cb6400;
-    text-align: center;
-    line-height: 50px;
 }
 @media (max-width: 768px) {
     .col_sm_2{
