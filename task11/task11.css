@@ -5,13 +5,16 @@
     font-family: "Microsoft YaiHei", "Helvetica Neue", Helvetica, STHeiti, Arial, sans-serif;
 }
 html{
-    font-size: 10px;
+    font-size: 20px;
 }
 body{
     font-size: 14px;
 }
 a{
     text-decoration: none;
+}
+img{
+    
 }
 
 /*header*/
@@ -24,6 +27,7 @@ a{
     font-size: 2rem;
     line-height: 5.7rem;
     color: #ffffff;
+    display: block;
 }
 .header a img{
     margin: 0 0.6rem 0 1.6rem;
