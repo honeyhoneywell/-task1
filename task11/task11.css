@@ -15,32 +15,32 @@ img{
 }
 .container{
     background: #f5f5f5;
-    padding-bottom: 50rem;
+    padding-bottom: 5.0rem;
 }
 /*header*/
 .header{
-    height: 43rem;
-    line-height: 43rem;
+    height: 4.3rem;
+    line-height: 4.3rem;
     background: #93d4d9;
     position: relative;
 }
 .header a{
-    font-size: 16rem;
+    font-size: 1.6rem;
     color: #ffffff;
-    line-height: 43rem;
+    line-height: 4.3rem;
     display: inline-block;
 }
 .header a img{
-    width: 10rem;
-    margin: 0 5rem 0 12rem;
+    width: 1.0rem;
+    margin: 0 0.5rem 0 1.2rem;
     vertical-align: sub;
 }
 .header h1{
     position: absolute;
     top: 0;
     width: 100%;
-    font-size: 18rem;
-    line-height: 43rem;
+    font-size: 1.8rem;
+    line-height: 4.3rem;
     text-align: center;
     color: #ffffff;
 }
@@ -50,14 +50,14 @@ img{
     background: #ffffff;
 }
 .nav ul{
-    height: 43rem;
-    line-height: 43rem;
+    height: 4.3rem;
+    line-height: 4.3rem;
     display: -webkit-flex;
     display: flex;
 }
 .nav ul li{
     color: #636363;
-    font-size: 15rem;
+    font-size: 1.5rem;
     text-align: center;
     position: relative;
     flex: auto;
@@ -73,7 +73,7 @@ img{
     bottom: 0;
     left: 0;
     right: 0;
-    height: 2rem;
+    height: 0.2rem;
     width: 80%;
     margin: auto;
     background: #93d4d9;
@@ -93,9 +93,9 @@ img{
     display: -webkit-flex;
     display: flex;
     justify-content: space-around;
-    padding: 16rem 0;
+    padding: 1.6rem 0;
     box-sizing: border-box;
-    border-bottom: 1rem solid #e5e5e5;
+    border-bottom: 0.1rem solid #e5e5e5;
 }
 .tags ul li{
     text-align: center;
@@ -106,19 +106,19 @@ img{
     color: #333333;
 }
 .tags ul a img{
-    width: 45rem;
+    width: 4.5rem;
 }
 .tags ul li p{
-    font-size: 14rem;
-    line-height: 22rem;
-    margin-top: 10rem;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    margin-top: 1.0rem;
 }
 
 .column{
     background: #ffffff;
 }
 .column ul{
-    padding: 15rem 11rem;
+    padding: 1.5rem 1.1rem;
     display: flex;
     display: -webkit-flex;
     text-align: center;
@@ -130,112 +130,112 @@ img{
     display: block;
 }
 .column ul li a img{
-    width: 78rem;
+    width: 7.8rem;
 }
 .column ul a h2{
-    font-size: 18rem;
+    font-size: 1.8rem;
     color: #000;
-    line-height: 28rem;
+    line-height: 2.8rem;
 }
 .column ul a p{
-    font-size: 13rem;
-    line-height: 25rem;
+    font-size: 1.3rem;
+    line-height: 2.5rem;
     color: #000;
 }
 .column ul li.middle{
-    border-left: 1rem solid #e5e5e5;
-    border-right: 1rem solid #e5e5e5;
+    border-left: .1rem solid #e5e5e5;
+    border-right: .1rem solid #e5e5e5;
 }
 
 section{
-    margin-top: 14rem;
+    margin-top: 1.4rem;
     background: #ffffff;
 }
 section h2{
-    font-size: 18rem;
-    line-height: 38rem;
-    padding-top: 5rem;
-    border-bottom: 2rem solid #e2e2e2;
-    margin: 0 12rem;
+    font-size: 1.8rem;
+    line-height: 3.8rem;
+    padding-top: .5rem;
+    border-bottom: .2rem solid #e2e2e2;
+    margin: 0 1.2rem;
 }
 section ul{
-    padding: 14rem 12rem 0 12rem;
+    padding: 1.4rem 1.2rem 0 1.2rem;
     display: flex;
     display: -webkit-flex;
 }
 section ul li.text{
     text-align: center;
     flex: auto;
-    margin-left: 10rem;
+    margin-left: 1.0rem;
 }
 section ul a{
     display: block;
     padding: 0;
-    margin-bottom: 10rem;
+    margin-bottom: 1.0rem;
     color: #333;
 }
 section ul a.img_box{
-    height: 85rem;
+    height: 8.5rem;
 }
 section ul img{
-    width: 91rem;
+    width: 9.1rem;
 }
 section ul li.text a{
     background: #f8f8f8;
-    font-size: 14rem;
-    line-height: 37rem;
+    font-size: 1.4rem;
+    line-height: 3.7rem;
 }
 .section2{
-    margin-bottom: 12rem;
+    margin-bottom: 1.2rem;
 }
 
 .article_1{
     background: #ffffff;
-    border-bottom: 2rem solid #f3f3f3;
-    padding: 10rem 12rem;
+    border-bottom: .2rem solid #f3f3f3;
+    padding: 1.0rem 1.2rem;
 }
 .article_1 a{
     display: block;
 }
 .article_1 img{
-    width: 105rem;
+    width: 10.5rem;
 }
 .article_1 .right{
     display: inline-block;
-    width: 220rem;
+    width: 22.0rem;
     vertical-align: top;
     position: relative;
-    height: 74rem;
-    margin-left: 10rem;
+    height: 7.4rem;
+    margin-left: 1.0rem;
 }
 .article_1 h2{
-    font-size: 17rem;
+    font-size: 1.7rem;
     color: #545454;
-    line-height: 22rem;
+    line-height: 2.2rem;
 }
 .article_1 p{
-    font-size: 14rem;
-    line-height: 18rem;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
     color: #bcbcbc;
     position: absolute;
     bottom: 0;
 }
 
 .article_2{
-    padding: 0 12rem;
+    padding: 0 1.2rem;
     background: #ffffff;
 }
 .article_2 a{
     display: block;
 }
 .article_2 h2{
-    font-size: 17rem;
+    font-size: 1.7rem;
     color: #545454;
-    line-height: 38rem;
+    line-height: 3.8rem;
 }
 .article_2 p{
-    font-size: 14rem;
-    line-height: 30rem;
+    font-size: 1.4rem;
+    line-height: 3.0rem;
     color: #bcbcbc;
 }
 .article_2 .img_box{
@@ -244,6 +244,6 @@ section ul li.text a{
     justify-content: space-between;
 }
 .article_2 .img_box img{
-    width: 115rem;
-    height: 74rem;
+    width: 11.5rem;
+    height: 7.4rem;
 }
