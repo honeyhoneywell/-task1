@@ -1,0 +1,83 @@
+table thead{
+    background: #000;
+    color: #ffffff;
+}
+table tbody tr:nth-child(2n){
+    background: #cccccc;
+}
+table tbody tr:nth-child(-n+3){
+    color:red;
+}
+
+.input-box{
+    margin: 30px 0;
+}
+input:focus{
+    width: 400px;
+    outline: none;
+}
+input{
+    width: 200px;
+    height: 30px;
+    -webkit-transition: width .5s ease;
+    -moz-transition: width .5s ease;
+    -ms-transition: width .5s ease;
+    -o-transition: width .5s ease;
+    transition: width .5s ease;
+}
+
+.banner{
+    width: 300px;
+    height: 150px;
+    position: relative;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    width: 300px;
+    height: 150px;
+    overflow: hidden;
+}
+li{
+    position: absolute;
+    width: 300px;
+    height: 150px;
+}
+#silider1{
+    background: red;
+}
+#silider2{
+    background: deepskyblue;
+}
+#silider3{
+    background: yellowgreen;
+}
+.btns{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+.btns a{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: rgba(255,255,255,0.5);
+    text-align: center;
+}
+li:target{
+    -webkit-animation: myfirst 1s;
+    -o-animation: myfirst 1s;
+    animation: myfirst 1s;
+    z-index: 9;
+}
+
+@keyframes myfirst {
+    from {left:300px}
+    to {left:0px}
+}
