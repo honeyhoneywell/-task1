@@ -198,11 +198,11 @@ section ul li.text a{
     display: block;
 }
 .article_1 img{
-    width: 10.5rem;
+    width: 9rem;
 }
 .article_1 .right{
     display: inline-block;
-    width: 22.0rem;
+    width: 19rem;
     vertical-align: top;
     position: relative;
     height: 7.4rem;
@@ -211,7 +211,7 @@ section ul li.text a{
 .article_1 h2{
     font-size: 1.7rem;
     color: #545454;
-    line-height: 2.2rem;
+    line-height: 2.0rem;
 }
 .article_1 p{
     font-size: 1.4rem;
@@ -222,7 +222,7 @@ section ul li.text a{
 }
 
 .article_2{
-    padding: 0 1.2rem;
+    padding: 0 1rem;
     background: #ffffff;
 }
 .article_2 a{
@@ -244,6 +244,6 @@ section ul li.text a{
     justify-content: space-between;
 }
 .article_2 .img_box img{
-    width: 11.5rem;
-    height: 7.4rem;
+    width: 9.8rem;
+    height: 6.5rem;
 }
