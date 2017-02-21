@@ -32,32 +32,21 @@
          将空气质量指数大于60的城市显示到aqi-list的列表中
          */
         var aqiList = document.getElementById("aqi-list");
-        var char = ["一","二","三","四","五","六"]
-        var aqiNum = [];
-        var aqiDataSort = [];
+        var char = ["一","二","三","四","五","六"];
+        var string = "";
+
+        //排序(多层数组的排序)
+        aqiData.sort(function (a,b) {
+            return b[1]-a[1];       //利用数组下标,根据数值降序
+        });
         for( let i in aqiData){
-            aqiNum.push(aqiData[i][1]);     //提取出所有数值数据
+            if( aqiData[i][1]>60){
+                //var oLi = document.createElement("li");
+                //oLi.innerHTML = "第" + char[i] + "名: " + aqiData[i][0] + " " + aqiData[i][1];
+                string += "<li>第" + char[i] + "名: " + aqiData[i][0] + " " + aqiData[i][1]  + "</li>"
+            };
         }
-        aqiNum.sort(
-                function (a,b) {
-                    return b-a;             //对数值进行降序排列
-                }
-        );
-        for( let i in aqiNum){
-            for( let j in aqiData){
-                if(aqiData[j][1]===aqiNum[i]){
-                    aqiDataSort.push(aqiData[j]);   //原数据内每个值与排序好的数组数值进行比较,相同的提取出来
-                    aqiData.splice(j,1);
-                }
-            }
-        }
-        for(let i in aqiDataSort){
-            if(aqiDataSort[i][1]>60){
-                var oLi = document.createElement("li");
-                oLi.innerHTML = "第"+ char[i] + "名："+ aqiDataSort[i][0] + " " +aqiDataSort[i][1];
-                aqiList.appendChild(oLi);
-            }
-        }
+        aqiList.innerHTML = string; //为了不再循环内使用appendChild
     })();
 
 </script>
