@@ -41,7 +41,6 @@ var aqiSourceData = {
     "厦门": randomBuildData(100),
     "沈阳": randomBuildData(500)
 };
-console.log(aqiSourceData);
 
 // 用于渲染图表的数据
 var chartData = {};
@@ -56,10 +55,34 @@ var pageState = {
  * 渲染图表
  */
 function renderChart() {
+    var chart = document.getElementsByClassName('aqi-chart-wrap')[0];       //柱状图的盒子
+    var backColor = ['#11d511','#eaf624','#ffc000','#d56411','#d51111','#4b0000'];      //存储柱状条的颜色
+    var citySelect = document.getElementById('city-select');        //获取城市select
 
+    chart.style.cssText = 'height:520px; position:relative;';       //设置好柱状图盒子的样式
+    citySelect.innerHTML = '';                  //清空option,为添加做准备
+    for(let item in aqiSourceData){
+        citySelect.innerHTML += '<option>' + item + '</option>';    //添加城市列表
+    }
+    Histogram();
+    citySelect.onchange = Histogram;
+    function Histogram(){
+        var cityName = citySelect.value;        //获取城市value
+        chartData = aqiSourceData[cityName];    //存储当前选择城市的数据
+        chart.innerHTML = '';
+        for(let i in chartData){
+            // var odiv = document.createElement('div');
+            // odiv.style.cssText = 'width:8px; height:' + chartData[i] + 'px; background:' + backColor[Math.floor(chartData[i]/90)] + '; position:absolute; bottom:0px;';
+            // chart.appendChild(odiv);
+            chart.innerHTML += '<div style="width: 8px; height:' + chartData[i] + 'px; position: absolute; bottom: 0px; background:' + backColor[Math.floor(chartData[i]/90)] + ';"></div>';
+        }
+        var aDiv = chart.getElementsByTagName('div');
+        for( let j=0,len=aDiv.length; j<len; j++){
+            aDiv[j].style.left = 12*j + 'px';
+        }
+    };
 }
-var chart = document.getElementsByClassName('aqi-chart-wrap')[0];
-
+renderChart();
 /**
  * 日、周、月的radio事件点击时的处理函数
  */
