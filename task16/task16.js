@@ -27,13 +27,15 @@ function addAqiData() {
         alert('请输入正确的城市名称：城市名必须为中文或英文字符');
         aqiCityInput.value = '';
         aqiCityInput.focus();           //输入错误就清空输入,并获得焦点
-    } else if (re.reCity.test(aqiCityInput.value) && !re.reValue.test(aqiValueInput.value)) {
+        return;
+    }
+    if (!re.reValue.test(aqiValueInput.value)) {
         alert('请输入正确的数值：空气质量指数必须为整数');
         aqiValueInput.value = '';
         aqiValueInput.focus();           //输入错误就清空输入,并获得焦点
-    }else if(re.reCity.test(aqiCityInput.value) && re.reValue.test(aqiValueInput.value)){
-        aqiData[aqiCityInput.value] = aqiValueInput.value;
+        return;
     }
+    aqiData[aqiCityInput.value] = aqiValueInput.value;
 }
 
 /**
