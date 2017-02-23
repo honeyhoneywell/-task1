@@ -21,11 +21,11 @@ function getDateStr(dat) {
 function randomBuildData(seed) {
     var returnData = {};
     var dat = new Date("2016-01-01");
-    var datStr = ''
+    var datStr = '';
     for (var i = 1; i < 92; i++) {
-        datStr = getDateStr(dat);
+        datStr = getDateStr(dat);   //2016-01-01
         returnData[datStr] = Math.ceil(Math.random() * seed);
-        dat.setDate(dat.getDate() + 1);
+        dat.setDate(dat.getDate() + 1); //2016-01-02(1-91一共随机生成91天的数据)
     }
     return returnData;
 }
@@ -41,6 +41,7 @@ var aqiSourceData = {
     "厦门": randomBuildData(100),
     "沈阳": randomBuildData(500)
 };
+console.log(aqiSourceData);
 
 // 用于渲染图表的数据
 var chartData = {};
@@ -49,7 +50,7 @@ var chartData = {};
 var pageState = {
     nowSelectCity: -1,
     nowGraTime: "day"
-}
+};
 
 /**
  * 渲染图表
@@ -57,6 +58,7 @@ var pageState = {
 function renderChart() {
 
 }
+var chart = document.getElementsByClassName('aqi-chart-wrap')[0];
 
 /**
  * 日、周、月的radio事件点击时的处理函数
