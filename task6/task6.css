@@ -63,6 +63,7 @@
 			width: 203px;
 			height: 301px;
 			float: right;
+			position: relative;
 		}
 		#passage1 hr{
 			border:none;
@@ -88,22 +89,31 @@
 			font-size: 116px;
 			color: #75b86b;
 			font-style: oblique;
-			margin-top: 40px;
-		}
-		#passage1 .num{
-			font-size: 55px;
-			color: #cc8091;
-			float: left;
+            margin-top: 18px;
 		}
 		#passage1 .bottom{
-			margin: 14px 0px 0px 80px;
+            position: absolute;
+            height: 55px;
+            bottom: 0;
 			color: #cc8091;
 		}
+        #passage1 .num{
+            position: absolute;
+            font-size: 55px;
+            color: #cc8091;
+            bottom: -10px;
+        }
 		#passage1 .up{
+            position: absolute;
 			font-size: 21px;
+            bottom: 12px;
+            left: 90px;
 		}
 		#passage1 .down{
+            position: absolute;
 			font-size: 12px;
+            bottom: 0;
+            left: 90px;
 		}
 		#passage2{
 			overflow: hidden;
@@ -156,9 +166,10 @@
 		}
 		#passage3 h2{
 			text-transform: uppercase;
-			font-size: 42px;
+			font-size: 40px;
 			color: #11456b;
-			font-family: "%u9ED1%u4F53";	/*黑体*/	
+            font-weight: normal;
+			font-family: "%u9ED1%u4F53";	/*黑体*/
 		}
 		#passage3 h2 .initial{
 			font-size: 73px;

@@ -71,9 +71,6 @@ function renderChart() {
         chartData = aqiSourceData[cityName];    //存储当前选择城市的数据
         chart.innerHTML = '';
         for(let i in chartData){
-            // var odiv = document.createElement('div');
-            // odiv.style.cssText = 'width:8px; height:' + chartData[i] + 'px; background:' + backColor[Math.floor(chartData[i]/90)] + '; position:absolute; bottom:0px;';
-            // chart.appendChild(odiv);
             chart.innerHTML += '<div style="width: 8px; height:' + chartData[i] + 'px; position: absolute; bottom: 0px; background:' + backColor[Math.floor(chartData[i]/90)] + ';"></div>';
         }
         var aDiv = chart.getElementsByTagName('div');
@@ -125,6 +122,21 @@ function initCitySelector() {
 /**
  * 初始化图表需要的数据格式
  */
+var dayData = {};
+for(let city in aqiSourceData){
+    for(let item in aqiSourceData[city]){
+        // console.log(item);
+        var dat = new Date(item);
+        var day = dat.getDay();
+        dayData[item] = [];
+        dayData[item].push(day);
+        dayData[item].push(aqiSourceData[city][item]);
+    }
+}
+
+for(var x in dayData){
+    console.log(x,';',dayData[x]);
+}
 function initAqiChartData() {
     // 将原始的源数据处理成图表需要的数据格式
     // 处理好的数据存到 chartData 中
