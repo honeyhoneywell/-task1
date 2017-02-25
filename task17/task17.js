@@ -124,18 +124,38 @@ function initCitySelector() {
  */
 var dayData = {};
 for(let city in aqiSourceData){
+    dayData[city] = [];
     for(let item in aqiSourceData[city]){
-        // console.log(item);
         var dat = new Date(item);
         var day = dat.getDay();
-        dayData[item] = [];
-        dayData[item].push(day);
-        dayData[item].push(aqiSourceData[city][item]);
+        day = day == 0? 7:day;
+        var weekData = 0;
+        var days = 0;
+        for(var i = Number(day); i<8; i++){
+            days++;
+            weekData += aqiSourceData[city][item];
+        }
+        weekData = weekData/days;
+        dayData[city].push(weekData);
     }
 }
 
 for(var x in dayData){
-    console.log(x,';',dayData[x]);
+    // console.log(x,';',dayData[x]);
+}
+
+var monthData = {};
+for(let city in aqiSourceData){
+    monthData[city] = [];
+    for(let item in aqiSourceData[city]){
+        var dat = new Date(item);
+        var month = dat.getMonth() + 1;
+        monthData[city].push(month);
+        monthData[city].push(aqiSourceData[city][item]);
+    }
+}
+for(var x in dayData){
+    console.log(x,';',monthData[x]);
 }
 function initAqiChartData() {
     // 将原始的源数据处理成图表需要的数据格式
