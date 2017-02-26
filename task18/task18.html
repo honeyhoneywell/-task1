@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task18</title>
+    <style>
+        ul{
+            list-style: none;
+            font-size: 0;
+            margin-top: 20px;
+        }
+        li{
+            font-size: 12px;
+            display: inline-block;
+            min-width: 30px;
+            height: 30px;
+            background: #f85a1a;
+            color: #ffffff;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="inBox">
+<input type="button" name="" id="inLeft" value="左侧入">
+<input type="button" name="" id="inRight" value="右侧入">
+<input type="button" name="" id="outLeft" value="左侧出">
+<input type="button" name="" id="outRight" value="右侧出">
+<ul id="ul">
+    <li>10</li>
+    <li>3</li>
+    <li>7</li>
+    <li>12</li>
+    <li>11</li>
+    <li>30</li>
+</ul>
+<script>
+    var btnInL = document.getElementById('inLeft'),
+        btnInR = document.getElementById('inRight'),
+        btnOutL = document.getElementById('outLeft'),
+        btnOutR = document.getElementById('outRight'),
+        text = document.getElementById('inBox'),
+        oUl = document.getElementById('ul');
+
+    btnInR.onclick = function () {
+        if(text.value) {
+            var oLi = document.createElement('li');
+            var aLi = oUl.getElementsByTagName('li');
+            oLi.innerHTML = text.value;
+            oUl.appendChild(oLi);
+            remove();
+        }
+    };
+    btnInL.onclick = function () {
+        if(text.value) {
+            var oLi = document.createElement('li');
+            var aLi = oUl.getElementsByTagName('li');
+            oLi.innerHTML = text.value;
+            oUl.insertBefore(oLi,aLi[0]);
+            remove();
+        }
+    };
+    btnOutL.onclick = function () {
+        var aLi = oUl.getElementsByTagName('li');
+        if(aLi.length>0) oUl.removeChild(aLi[0]);
+        remove();
+    };
+    btnOutR.onclick = function () {
+        var aLi = oUl.getElementsByTagName('li');
+        if(aLi.length>0) oUl.removeChild(aLi[aLi.length-1]);
+        remove();
+    };
+    function remove() {
+        var aLi = oUl.getElementsByTagName('li');
+        for(var i=0,len=aLi.length; i<len; i++){
+            aLi[i].onclick = function () {
+                oUl.removeChild(this);
+            }
+        }
+    }
+    remove();
+</script>
+</body>
+</html>
