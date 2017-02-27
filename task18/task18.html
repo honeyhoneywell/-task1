@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <title>Task18</title>
     <style>
-        ul{
-            list-style: none;
-            font-size: 0;
+        #wrap{
             margin-top: 20px;
         }
-        li{
-            font-size: 12px;
+        span{
             display: inline-block;
-            min-width: 30px;
+            min-width: 20px;
             height: 30px;
             background: #f85a1a;
             color: #ffffff;
+            padding: 0 5px;
             text-align: center;
             line-height: 30px;
             margin-left: 10px;
@@ -28,59 +26,30 @@
 <input type="button" name="" id="inRight" value="右侧入">
 <input type="button" name="" id="outLeft" value="左侧出">
 <input type="button" name="" id="outRight" value="右侧出">
-<ul id="ul">
-    <li>10</li>
-    <li>3</li>
-    <li>7</li>
-    <li>12</li>
-    <li>11</li>
-    <li>30</li>
-</ul>
+<div id="wrap">
+    <span>10</span>
+    <span>3</span>
+    <span>7</span>
+    <span>12</span>
+    <span>11</span>
+    <span>30</span>
+</div>
 <script>
     var btnInL = document.getElementById('inLeft'),
         btnInR = document.getElementById('inRight'),
         btnOutL = document.getElementById('outLeft'),
         btnOutR = document.getElementById('outRight'),
         text = document.getElementById('inBox'),
-        oUl = document.getElementById('ul');
+        oWrap = document.getElementById('wrap');
 
-    btnInR.onclick = function () {
-        if(text.value) {
-            var oLi = document.createElement('li');
-            var aLi = oUl.getElementsByTagName('li');
-            oLi.innerHTML = text.value;
-            oUl.appendChild(oLi);
-            remove();
-        }
+    oWrap.onclick  = function (ev) {
+        if(ev.target.nodeName === 'SPAN') oWrap.removeChild(ev.target)
     };
-    btnInL.onclick = function () {
-        if(text.value) {
-            var oLi = document.createElement('li');
-            var aLi = oUl.getElementsByTagName('li');
-            oLi.innerHTML = text.value;
-            oUl.insertBefore(oLi,aLi[0]);
-            remove();
-        }
-    };
-    btnOutL.onclick = function () {
-        var aLi = oUl.getElementsByTagName('li');
-        if(aLi.length>0) oUl.removeChild(aLi[0]);
-        remove();
-    };
-    btnOutR.onclick = function () {
-        var aLi = oUl.getElementsByTagName('li');
-        if(aLi.length>0) oUl.removeChild(aLi[aLi.length-1]);
-        remove();
-    };
-    function remove() {
-        var aLi = oUl.getElementsByTagName('li');
-        for(var i=0,len=aLi.length; i<len; i++){
-            aLi[i].onclick = function () {
-                oUl.removeChild(this);
-            }
-        }
+    //创建
+    function create() {
+        var oSpan = document.createElement('span');
+        oSpan.innerHTML = text.value;
     }
-    remove();
 </script>
 </body>
 </html>
