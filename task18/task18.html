@@ -42,14 +42,45 @@
         text = document.getElementById('inBox'),
         oWrap = document.getElementById('wrap');
 
-    oWrap.onclick  = function (ev) {
-        if(ev.target.nodeName === 'SPAN') oWrap.removeChild(ev.target)
+    oWrap.onclick  = function (ev){
+        if(ev.target.nodeName === 'SPAN'){
+            oWrap.removeChild(ev.target);
+        }
     };
-    //创建
-    function create() {
-        var oSpan = document.createElement('span');
-        oSpan.innerHTML = text.value;
+    function inL() {
+        if(oWrap.children){
+            oWrap.insertBefore(create(),oWrap.children[0]);
+        }else{
+            oWrap.appendChild(create());
+        }
     }
+    function inR(){
+        oWrap.appendChild(create());
+    }
+    function outL(){
+        if(oWrap.children){
+            alert(oWrap.children[0].innerHTML);
+            oWrap.removeChild(oWrap.children[0]);
+        }
+    }
+    function outR() {
+        if(oWrap.children){
+            alert(oWrap.children[oWrap.children.length-1].innerHTML);
+            oWrap.removeChild(oWrap.children[oWrap.children.length-1]);
+        }
+    }
+    //创建
+    function create(){
+        var oSpan = document.createElement('span');
+        if(text.value!=""){
+            oSpan.innerHTML = text.value;
+        }
+        return oSpan;
+    }
+    btnInL.onclick = inL;
+    btnInR.onclick = inR;
+    btnOutL.onclick = outL;
+    btnOutR.onclick = outR;
 </script>
 </body>
 </html>
