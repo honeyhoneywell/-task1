@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task18</title>
+    <style>
+        #wrap{
+            margin-top: 20px;
+        }
+        span{
+            display: inline-block;
+            min-width: 20px;
+            background: #f85a1a;
+            color: #ffffff;
+            padding: 0 5px;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="inBox">
+<input type="button" name="" id="inLeft" value="左侧入">
+<input type="button" name="" id="inRight" value="右侧入">
+<input type="button" name="" id="outLeft" value="左侧出">
+<input type="button" name="" id="outRight" value="右侧出">
+<input type="button" name="" id="sort" value="降序排列">
+<div id="wrap">
+</div>
+<script>
+    var btnInL = document.getElementById('inLeft'),
+            btnInR = document.getElementById('inRight'),
+            btnOutL = document.getElementById('outLeft'),
+            btnOutR = document.getElementById('outRight'),
+            text = document.getElementById('inBox'),
+            oWrap = document.getElementById('wrap'),
+            re = /^([1-9]\d|100)$/;
+    //删除自己
+    oWrap.onclick  = function (ev){
+        if(ev.target.nodeName === 'SPAN'){
+            oWrap.removeChild(ev.target);
+        }
+    };
+
+    function inL(){
+        if(create()){
+            if (oWrap.children.length) {
+                oWrap.insertBefore(create(), oWrap.children[0]);
+            } else {
+                oWrap.appendChild(create());
+            }
+        }
+    }
+    function inR(){
+        if(create()){
+            oWrap.appendChild(create());
+        }
+    }
+    function outL(){
+        if(oWrap.children.length){
+            alert(oWrap.children[0].innerHTML);
+            oWrap.removeChild(oWrap.children[0]);
+        }
+    }
+    function outR() {
+        if(oWrap.children.length){
+            alert(oWrap.children[oWrap.children.length-1].innerHTML);
+            oWrap.removeChild(oWrap.children[oWrap.children.length-1]);
+        }
+    }
+    //创建
+    function create(){
+        if(re.test(text.value)){
+            var oSpan = document.createElement('span');
+            oSpan.style.height = text.value + 'px';
+            return oSpan;
+        }else{
+            alert('请输入10-100的数字');
+        }
+    }
+    btnInL.onclick = inL;
+    btnInR.onclick = inR;
+    btnOutL.onclick = outL;
+    btnOutR.onclick = outR;
+</script>
+<script>
+    var array = [];
+    for(var i=0; i<10; i++){
+        array.push(Math.round(Math.random()*100));
+    }
+    console.log(array);
+    //冒泡排序
+    function popSort() {
+        var l = array.length-1;
+        while (l>0){
+            for(var j=0; j<l; j++){
+                if(array[j]>array[j+1]){
+                    var a = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = a;
+                }
+                console.log(array)
+            }
+            l--;
+        }
+    }
+    function quicksort(arr){
+        if (arr.length == 0){
+            return [];
+        }
+        var left = [];
+        var right = [];
+        var key = arr[0];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] < key) {
+                left.push(arr[i]);
+            } else {
+                right.push(arr[i]);
+            }
+        }
+        return quicksort(left).concat(key, quicksort(right));
+    }
+
+    console.log(quicksort(array));
+</script>
+</body>
+</html>
