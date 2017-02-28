@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Task18</title>
+    <title>Task</title>
     <style>
         #wrap{
             margin-top: 20px;
         }
         span{
             display: inline-block;
-            min-width: 20px;
+            min-width: 12px;
             background: #f85a1a;
             color: #ffffff;
             padding: 0 5px;
             text-align: center;
             line-height: 30px;
-            margin-left: 10px;
+            margin-left: 2px;
         }
     </style>
 </head>
@@ -25,7 +25,7 @@
 <input type="button" name="" id="inRight" value="右侧入">
 <input type="button" name="" id="outLeft" value="左侧出">
 <input type="button" name="" id="outRight" value="右侧出">
-<input type="button" name="" id="sort" value="降序排列">
+<input type="button" name="" id="sort" value="升序排列">
 <div id="wrap">
 </div>
 <script>
@@ -35,6 +35,8 @@
             btnOutR = document.getElementById('outRight'),
             text = document.getElementById('inBox'),
             oWrap = document.getElementById('wrap'),
+            btnSort = document.getElementById('sort'),
+            spanHeight = [],
             re = /^([1-9]\d|100)$/;
     //删除自己
     oWrap.onclick  = function (ev){
@@ -42,7 +44,6 @@
             oWrap.removeChild(ev.target);
         }
     };
-
     function inL(){
         if(create()){
             if (oWrap.children.length) {
@@ -59,52 +60,28 @@
     }
     function outL(){
         if(oWrap.children.length){
-            alert(oWrap.children[0].innerHTML);
             oWrap.removeChild(oWrap.children[0]);
         }
     }
     function outR() {
         if(oWrap.children.length){
-            alert(oWrap.children[oWrap.children.length-1].innerHTML);
             oWrap.removeChild(oWrap.children[oWrap.children.length-1]);
         }
     }
     //创建
     function create(){
-        if(re.test(text.value)){
+        if(oWrap.children.length===60){
+            alert('队列元素数量最多为60个')
+        }else if(re.test(text.value)){
             var oSpan = document.createElement('span');
             oSpan.style.height = text.value + 'px';
+            spanHeight.push(Number(text.value));
             return oSpan;
         }else{
             alert('请输入10-100的数字');
         }
     }
-    btnInL.onclick = inL;
-    btnInR.onclick = inR;
-    btnOutL.onclick = outL;
-    btnOutR.onclick = outR;
-</script>
-<script>
-    var array = [];
-    for(var i=0; i<10; i++){
-        array.push(Math.round(Math.random()*100));
-    }
-    console.log(array);
-    //冒泡排序
-    function popSort() {
-        var l = array.length-1;
-        while (l>0){
-            for(var j=0; j<l; j++){
-                if(array[j]>array[j+1]){
-                    var a = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = a;
-                }
-                console.log(array)
-            }
-            l--;
-        }
-    }
+    //快速排序
     function quicksort(arr){
         if (arr.length == 0){
             return [];
@@ -122,7 +99,20 @@
         return quicksort(left).concat(key, quicksort(right));
     }
 
-    console.log(quicksort(array));
+    function sort() {
+        spanHeight = quicksort(spanHeight);
+        for(var i=0,len=oWrap.children.length;i<len;i++){
+            oWrap.children[i].style.height = spanHeight[i] +'px';
+        }
+    }
+
+    btnInL.onclick = inL;
+    btnInR.onclick = inR;
+    btnOutL.onclick = outL;
+    btnOutR.onclick = outR;
+    btnSort.onclick = sort;
+
 </script>
+
 </body>
 </html>
