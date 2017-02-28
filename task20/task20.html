@@ -35,7 +35,7 @@
 <input type="button" name="" id="inRight" value="右侧入">
 <input type="button" name="" id="outLeft" value="左侧出">
 <input type="button" name="" id="outRight" value="右侧出">
-<input type="button" value="查找">
+<input type="button" value="查找" onclick="fn()">
 
 <ul id="wrap">
 </ul>
@@ -47,7 +47,8 @@
         btnOutR = document.getElementById('outRight'),
         textSreach = document.getElementById('text'),
         textIn = document.getElementById('inBox'),
-        oWrap = document.getElementById('wrap');
+        oWrap = document.getElementById('wrap'),
+        re = /[^0-9a-zA-z]([0-9a-zA-z]+)[^0-9a-zA-z]/g;
     //删除自己
     oWrap.onclick  = function (ev){
         if(ev.target.nodeName === 'SPAN'){
@@ -82,11 +83,16 @@
     function create(){
         if(oWrap.children.length===60){
             alert('队列元素数量最多为60个')
-        }else if(textIn.value){
+        }else{
             var oLi = document.createElement('li');
             oLi.innerHTML = textIn.value;
             return oLi;
         }
+    }
+    function  fn() {
+        console.log(textIn.value);
+        if(re.test(textIn.value)) alert(1)
+//        textIn.value.replace(re,'1')
     }
 
     btnInL.onclick = inL;
