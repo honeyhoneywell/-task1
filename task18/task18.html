@@ -48,7 +48,7 @@
         }
     };
     function inL() {
-        if(oWrap.children){
+        if(oWrap.children.length){
             oWrap.insertBefore(create(),oWrap.children[0]);
         }else{
             oWrap.appendChild(create());
@@ -58,13 +58,13 @@
         oWrap.appendChild(create());
     }
     function outL(){
-        if(oWrap.children){
+        if(oWrap.children.length){
             alert(oWrap.children[0].innerHTML);
             oWrap.removeChild(oWrap.children[0]);
         }
     }
     function outR() {
-        if(oWrap.children){
+        if(oWrap.children.length){
             alert(oWrap.children[oWrap.children.length-1].innerHTML);
             oWrap.removeChild(oWrap.children[oWrap.children.length-1]);
         }
