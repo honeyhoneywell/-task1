@@ -48,7 +48,7 @@
         textSreach = document.getElementById('text'),
         textIn = document.getElementById('inBox'),
         oWrap = document.getElementById('wrap'),
-        re = /[^0-9a-zA-z]([0-9a-zA-z]+)[^0-9a-zA-z]/g;
+        re = /[0-9a-zA-z][^0-9a-zA-z\u4e00-\u9fa5]+[0-9a-zA-z]/g;
     //删除自己
     oWrap.onclick  = function (ev){
         if(ev.target.nodeName === 'SPAN'){
@@ -56,17 +56,20 @@
         }
     };
     function inL(){
-        if(create()){
+        var str = create();
+        if(str){
             if (oWrap.children.length) {
-                oWrap.insertBefore(create(), oWrap.children[0]);
+                oWrap.insertBefore(str, oWrap.children[0]);
             } else {
-                oWrap.appendChild(create());
+                oWrap.appendChild(str);
             }
         }
     }
     function inR(){
-        if(create()){
-            oWrap.appendChild(create());
+        var str = create();
+        console.log(str);
+        if(str){
+            oWrap.appendChild(str);
         }
     }
     function outL(){
@@ -89,11 +92,7 @@
             return oLi;
         }
     }
-    function  fn() {
-        console.log(textIn.value);
-        if(re.test(textIn.value)) alert(1)
-//        textIn.value.replace(re,'1')
-    }
+
 
     btnInL.onclick = inL;
     btnInR.onclick = inR;

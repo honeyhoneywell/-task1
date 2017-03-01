@@ -45,26 +45,19 @@
         }
     };
     function inL(){
-        if(oWrap.children.length===60){
-            alert('队列元素数量最多为60个');
-        }else if(re.test(text.value)) {
+        var str = create();
+        if(str){
             if (oWrap.children.length) {
-                oWrap.insertBefore(create(), oWrap.children[0]);
+                oWrap.insertBefore(str, oWrap.children[0]);
             } else {
-                oWrap.appendChild(create());
+                oWrap.appendChild(str);
             }
-        }else{
-            alert('请输入10-100的数字');
         }
     }
     function inR(){
-        if(oWrap.children.length===60){
-            alert('队列元素数量最多为60个');
-        }else if(re.test(text.value)) {
-            oWrap.appendChild(create());
-        }
-        else{
-            alert('请输入10-100的数字');
+        var str = create();
+        if(str){
+            oWrap.appendChild(str);
         }
     }
     function outL(){
@@ -79,10 +72,17 @@
     }
     //创建
     function create(){
+        if(oWrap.children.length===60){
+            alert('队列元素数量最多为60个');
+        }else if(re.test(text.value)) {
             var oSpan = document.createElement('span');
             oSpan.style.height = text.value + 'px';
             spanHeight.push(Number(text.value));
             return oSpan;
+        }
+        else{
+            alert('请输入10-100的数字');
+        }
     }
     //快速排序
     function quicksort(arr){
