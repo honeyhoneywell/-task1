@@ -45,17 +45,26 @@
         }
     };
     function inL(){
-        if(create()){
+        if(oWrap.children.length===60){
+            alert('队列元素数量最多为60个');
+        }else if(re.test(text.value)) {
             if (oWrap.children.length) {
                 oWrap.insertBefore(create(), oWrap.children[0]);
             } else {
                 oWrap.appendChild(create());
             }
+        }else{
+            alert('请输入10-100的数字');
         }
     }
     function inR(){
-        if(create()){
+        if(oWrap.children.length===60){
+            alert('队列元素数量最多为60个');
+        }else if(re.test(text.value)) {
             oWrap.appendChild(create());
+        }
+        else{
+            alert('请输入10-100的数字');
         }
     }
     function outL(){
@@ -70,16 +79,10 @@
     }
     //创建
     function create(){
-        if(oWrap.children.length===60){
-            alert('队列元素数量最多为60个')
-        }else if(re.test(text.value)){
             var oSpan = document.createElement('span');
             oSpan.style.height = text.value + 'px';
             spanHeight.push(Number(text.value));
             return oSpan;
-        }else{
-            alert('请输入10-100的数字');
-        }
     }
     //快速排序
     function quicksort(arr){
