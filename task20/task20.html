@@ -2,19 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Task</title>
     <style>
-        textarea{
-            resize: none;
-        }
-        input{
-            margin-top: 20px;
-        }
         #wrap{
             margin-top: 20px;
-            list-style: none;
         }
-        li{
+        span{
             display: inline-block;
             min-width: 12px;
             background: #f85a1a;
@@ -22,33 +15,42 @@
             padding: 0 5px;
             text-align: center;
             line-height: 30px;
-            margin-left: 1px;
+            margin: 10px 0 0 2px;
+        }
+        textarea{
+            width: 300px;
+            height: 200px;
+            resize: none;
+            margin-bottom: 40px;
+        }
+        input{
+            margin-top: 10px;
+        }
+        i{
+            background: #000000;
         }
     </style>
 </head>
 <body>
-<textarea name="" id="inBox" cols="30" rows="10">
-</textarea>
-<br>
-<input type="text" id="text" value="请输入查找内容">
+<textarea id="inBox"></textarea><br>
+<input type="text" id="textSearch" value="请输入要查找的内容"><br>
 <input type="button" name="" id="inLeft" value="左侧入">
 <input type="button" name="" id="inRight" value="右侧入">
 <input type="button" name="" id="outLeft" value="左侧出">
 <input type="button" name="" id="outRight" value="右侧出">
-<input type="button" value="查找" onclick="fn()">
-
-<ul id="wrap">
-</ul>
-</body>
+<input type="button" id="search" value="查找">
+<div id="wrap">
+</div>
 <script>
     var btnInL = document.getElementById('inLeft'),
-        btnInR = document.getElementById('inRight'),
-        btnOutL = document.getElementById('outLeft'),
-        btnOutR = document.getElementById('outRight'),
-        textSreach = document.getElementById('text'),
-        textIn = document.getElementById('inBox'),
-        oWrap = document.getElementById('wrap'),
-        re = /[0-9a-zA-z][^0-9a-zA-z\u4e00-\u9fa5]+[0-9a-zA-z]/g;
+            btnInR = document.getElementById('inRight'),
+            btnOutL = document.getElementById('outLeft'),
+            btnOutR = document.getElementById('outRight'),
+            btnSearch = document.getElementById('search'),
+            text = document.getElementById('inBox'),
+            oWrap = document.getElementById('wrap'),
+            reTrim = /^\s+|\s+$/g,
+            reReplace = /[0-9a-zA-Z\u4e00-\u9fa5][^0-9a-zA-Z\u4e00-\u9fa5]+[0-9a-zA-Z\u4e00-\u9fa5]/g;
     //删除自己
     oWrap.onclick  = function (ev){
         if(ev.target.nodeName === 'SPAN'){
@@ -56,21 +58,10 @@
         }
     };
     function inL(){
-        var str = create();
-        if(str){
-            if (oWrap.children.length) {
-                oWrap.insertBefore(str, oWrap.children[0]);
-            } else {
-                oWrap.appendChild(str);
-            }
-        }
+        oWrap.innerHTML += create();
     }
     function inR(){
-        var str = create();
-        console.log(str);
-        if(str){
-            oWrap.appendChild(str);
-        }
+        oWrap.innerHTML += create();
     }
     function outL(){
         if(oWrap.children.length){
@@ -84,12 +75,33 @@
     }
     //创建
     function create(){
-        if(oWrap.children.length===60){
-            alert('队列元素数量最多为60个')
-        }else{
-            var oLi = document.createElement('li');
-            oLi.innerHTML = textIn.value;
-            return oLi;
+        var str = text.value.replace(reTrim,'');
+        str = str.replace(reReplace,function (reReplace) {
+            var left = reReplace.charAt(0);
+            var right = reReplace.charAt(reReplace.length-1);
+            return left+':'+right;
+        });
+        var arr = str.split(':');
+        var inner = '';
+        for(var i in arr){
+            inner += '<span>'+arr[i]+'</span>';
+        }
+        return inner;
+    }
+    //查找
+    function search() {
+        var spans = oWrap.getElementsByTagName('span');
+        var textSearch = document.getElementById('textSearch').value;
+        var re = RegExp(textSearch);
+        var reLeft = /<\/?i>/g;
+        for(var i=0,len=spans.length; i<len; i++){
+            var str = spans[i].innerHTML;
+            spans[i].innerHTML = str.replace(reLeft,'');
+            str = spans[i].innerHTML;
+            spans[i].innerHTML = str.replace(re,function (re) {
+                var str = '<i>' + re + '</i>';
+                return str;
+            })
         }
     }
 
@@ -98,6 +110,9 @@
     btnInR.onclick = inR;
     btnOutL.onclick = outL;
     btnOutR.onclick = outR;
+    btnSearch.onclick = search;
 
 </script>
+
+</body>
 </html>
