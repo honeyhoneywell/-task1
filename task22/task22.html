@@ -40,8 +40,23 @@
 
 <input type="button" value="前序遍历">
 <script>
-    var root = document.getElementsByTagName('div')[0];
-    
+    //前序排列
+    function preOrder(){
+        var root = document.getElementsByTagName('div');
+        var i = 0;
+        var timer =  setInterval(function () {
+            root[i].style.background = "#ccc";
+            setTimeout(function () {
+                root[i].style.background = "#fff";
+                i++;
+            }, 500);
+            if(i>13){
+                clearInterval(timer);
+            }
+        },600)
+    }
+
+
 
 
 </script>
