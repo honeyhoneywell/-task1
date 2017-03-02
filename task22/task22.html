@@ -40,23 +40,46 @@
 
 <input type="button" value="前序遍历">
 <script>
-    //前序排列
-    function preOrder(){
-        var root = document.getElementsByTagName('div');
+    var arrIn = [];
+    var arrPost = [];
+    var arrPre = [];
+    var node = document.getElementsByTagName('div')[0];
+    function render(arr){
         var i = 0;
         var timer =  setInterval(function () {
-            root[i].style.background = "#ccc";
+            arr[i].style.background = "#ccc";
             setTimeout(function () {
-                root[i].style.background = "#fff";
+                arr[i].style.background = "#fff";
                 i++;
             }, 500);
             if(i>13){
                 clearInterval(timer);
             }
-        },600)
+        },550)
     }
 
+    var preOrder = function (node) {
+        if (node) {
+            arrPre.push(node);
+            preOrder(node.children[0]);
+            preOrder(node.children[1]);
+        }
+    };
 
+    function inOrder (node) {
+        if (node) {
+            inOrder(node.children[0]);
+            arrIn.push(node);
+            inOrder(node.children[1]);
+        }
+    }
+    var postOrder = function (node) {
+        if (node) {
+            postOrder(node.children[0]);
+            postOrder(node.children[1]);
+            arrPost.push(node);
+        }
+    }
 
 
 </script>
