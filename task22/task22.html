@@ -38,15 +38,21 @@
     </div>
 </div>
 
-<input type="button" value="前序遍历">
+<input type="button" value="前序遍历" onclick="render.call(this,arrPre)"><br>
+<input type="button" value="中序遍历" onclick="render.call(this,arrIn)"><br>
+<input type="button" value="后序遍历" onclick="render.call(this,arrPost)">
 <script>
+    var node = document.getElementsByTagName('div')[0];
     var arrIn = [];
     var arrPost = [];
     var arrPre = [];
-    var node = document.getElementsByTagName('div')[0];
+
+    //动画
     function render(arr){
+        this.disabled = "disabled";
         var i = 0;
-        var timer =  setInterval(function () {
+        var that = this;    //把当前按钮传参进去,遍历结束后恢复按钮可用状态
+        var timer =  setInterval(function (that) {
             arr[i].style.background = "#ccc";
             setTimeout(function () {
                 arr[i].style.background = "#fff";
@@ -54,18 +60,26 @@
             }, 500);
             if(i>13){
                 clearInterval(timer);
+                that.disabled = "";
             }
-        },550)
+        },550,that)
     }
 
-    var preOrder = function (node) {
+    //执行,填满三个数组
+    preOrder(node);
+    inOrder(node);
+    postOrder(node);
+
+
+    //前序
+    function preOrder(node) {
         if (node) {
             arrPre.push(node);
             preOrder(node.children[0]);
             preOrder(node.children[1]);
         }
-    };
-
+    }
+    //中序
     function inOrder (node) {
         if (node) {
             inOrder(node.children[0]);
@@ -73,15 +87,14 @@
             inOrder(node.children[1]);
         }
     }
-    var postOrder = function (node) {
+    //后序
+    function postOrder(node) {
         if (node) {
             postOrder(node.children[0]);
             postOrder(node.children[1]);
             arrPost.push(node);
         }
     }
-
-
 </script>
 </body>
 </html>
