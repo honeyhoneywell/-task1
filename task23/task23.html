@@ -5,6 +5,7 @@
     <title>Title</title>
     <style>
         div{
+            font-size: 12px;
             border: 1px solid #cccccc;
             padding: 10px;
             margin: 10px;
@@ -12,47 +13,89 @@
             min-height: 20px;
             background: #ffffff;
             display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-items: center;
         }
-
+        fieldset{
+            border: #cccccc 1px solid;
+            height: 50px;
+        }
+        legend{
+            font-size: 14px;
+            color: #cccccc;
+        }
+        input{
+            border: 1px solid #cccccc;
+            height: 20px;
+            background: #ffffff;
+        }
+        input[type="text"]{
+            width: 200px;
+            margin-right: 50px;
+            color: #808080;
+        }
+        input[type="button"]{
+            height: 30px;
+            margin-right: 20px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+        }
+        input[type="button"]:hover{
+            color: #4d97ff;
+            background: #D1E2FF;
+            border: 1px solid #a6cdff;
+            -webkit-box-shadow: 0 4px  20px  #b7e5ff;
+            -moz-box-shadow: 0 4px  20px #b7e5ff;
+            box-shadow: 0 4px  20px  #b7e5ff;
+        }
     </style>
 </head>
 <body>
-<div>a
-    <div>b
-        <div>d
-            <div>i</div>
-            <div>j</div>
+<div>Super
+    <div>What
+        <div>Apple
+            <div>Pear</div>
+            <div>Pig</div>
+            <div>Cola</div>
+            <div>Soccer</div>
         </div>
-        <div>e
-            <div>k</div>
-            <div>l</div>
-        </div>
-    </div>
-    <div>c
-        <div>f
-            <div>m</div>
-            <div>n</div>
-        </div>
-        <div>g
-            <div>o</div>
-            <div>p</div>
+        <div>Phone</div>
+        <div>Blank
+            <div>Book</div>
+            <div>School</div>
         </div>
     </div>
+    <div>Note
+        <div>Human
+            <div>Code</div>
+            <div>Operate</div>
+            <div>Man</div>
+        </div>
+        <div>Program
+            <div>Bement
+                <div>Cat</div>
+            </div>
+            <div>Glass</div>
+        </div>
+    </div>
+    <div>Fish</div>
 </div>
+<fieldset>
+    <legend>这只是个框而已</legend>
+    <input type="text" value="请输入你要查找的内容">
+    <input type="button" name="" id="" value="前序遍历">
+    <input type="button" name="" id="" value="中序遍历">
+    <input type="button" name="" id="" value="后序遍历">
+    <input type="button" name="" id="" value="广度遍历">
+</fieldset>
 <script>
-    var node = document.getElementsByTagName('div')[0];
+    var node = document.getElementsByTagName('div');
     var arr = [];
-    function fn(node) {
-        if(node!=null){
-            arr.push(node);
-            setTimeout(function () {
-                fn(node.children[0]);
-                fn(node.children[1]);
-            },500)
-        }
+    function pre(node) {
+        
     }
-    fn(node);
-    console.log(arr);
 </script>
 </body>
 </html>

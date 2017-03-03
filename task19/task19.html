@@ -9,9 +9,9 @@
         }
         span{
             display: inline-block;
-            min-width: 12px;
             background: #f85a1a;
             color: #ffffff;
+            min-width: 2px;
             padding: 0 5px;
             text-align: center;
             line-height: 30px;
@@ -25,7 +25,8 @@
 <input type="button" name="" id="inRight" value="右侧入">
 <input type="button" name="" id="outLeft" value="左侧出">
 <input type="button" name="" id="outRight" value="右侧出">
-<input type="button" name="" id="sort" value="升序排列">
+<input type="button" name="" id="random" value="随机产生50个">
+<input type="button" name="" id="sort" value="快速排列">
 <div id="wrap">
 </div>
 <script>
@@ -36,6 +37,7 @@
             text = document.getElementById('inBox'),
             oWrap = document.getElementById('wrap'),
             btnSort = document.getElementById('sort'),
+            btnRandom = document.getElementById('random'),
             spanHeight = [],
             re = /^([1-9]\d|100)$/;
     //删除自己
@@ -76,7 +78,7 @@
             alert('队列元素数量最多为60个');
         }else if(re.test(text.value)) {
             var oSpan = document.createElement('span');
-            oSpan.style.height = text.value + 'px';
+            oSpan.style.height = (text.value)*2 + 'px';
             spanHeight.push(Number(text.value));
             return oSpan;
         }
@@ -84,25 +86,37 @@
             alert('请输入10-100的数字');
         }
     }
-    //快速排序
-    function quicksort(arr){
-        if (arr.length == 0){
-            return [];
+
+    //随机产生50个
+    function randomCreate() {
+        oWrap.innerHTML = "";
+        spanHeight = [];
+        for(var i=0;i<50;i++){
+            var oSpan = document.createElement('span');
+            oSpan.style.height = Math.round( (Math.random()*90 +10)*2 ) + 'px';
+            spanHeight.push(parseFloat(oSpan.style.height));
+            oWrap.appendChild(oSpan);
         }
-        var left = [];
-        var right = [];
-        var key = arr[0];
-        for (var i = 1; i < arr.length; i++) {
-            if (arr[i] < key) {
-                left.push(arr[i]);
-            } else {
-                right.push(arr[i]);
-            }
-        }
-        return quicksort(left).concat(key, quicksort(right));
     }
 
     function sort() {
+        //快速排序
+        function quicksort(arr){
+            if (arr.length == 0){
+                return [];
+            }
+            var left = [];
+            var right = [];
+            var key = arr[0];
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] < key) {
+                    left.push(arr[i]);
+                } else {
+                    right.push(arr[i]);
+                }
+            }
+            return quicksort(left).concat(key, quicksort(right));
+        }
         spanHeight = quicksort(spanHeight);
         for(var i=0,len=oWrap.children.length;i<len;i++){
             oWrap.children[i].style.height = spanHeight[i] +'px';
@@ -114,6 +128,7 @@
     btnOutL.onclick = outL;
     btnOutR.onclick = outR;
     btnSort.onclick = sort;
+    btnRandom.onclick = randomCreate;
 
 </script>
 
