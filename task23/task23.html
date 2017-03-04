@@ -41,6 +41,7 @@
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             border-radius: 2px;
+            color: #333333;
         }
         input[type="button"]:hover{
             color: #4d97ff;
@@ -85,16 +86,77 @@
 <fieldset>
     <legend>这只是个框而已</legend>
     <input type="text" value="请输入你要查找的内容">
-    <input type="button" name="" id="" value="前序遍历">
-    <input type="button" name="" id="" value="中序遍历">
-    <input type="button" name="" id="" value="后序遍历">
-    <input type="button" name="" id="" value="广度遍历">
+    <input type="button" name="" id="btnPre" value="前序遍历">
+    <input type="button" name="" id="btnIn" value="中序遍历">
+    <input type="button" name="" id="bntPost" value="后序遍历">
+    <input type="button" name="" id="bntBreadth" value="广度遍历">
 </fieldset>
 <script>
-    var node = document.getElementsByTagName('div');
-    var arr = [];
-    function pre(node) {
-        
+    var node = document.getElementsByTagName('div')[0],
+        fieldset = document.getElementsByTagName('fieldset')[0],
+        arrPre = [],
+        arrIn = [],
+        arrPost = [],
+        arrBreadth  = [];
+    function preOrder(node) {
+        if(node){
+            arrPre.push(node);
+            var len = node.children.length;
+            for(var i=0; i<len; i++){
+                preOrder(node.children[i]);
+            }
+        }
+    }
+    function inOrder(node) {
+        if(node){
+            var len = node.children.length;
+            inOrder(node.children[0]);
+            arrIn.push(node);
+            for(var i=1; i<len; i++){
+                inOrder(node.children[i]);
+            }
+        }
+    }
+    function postOrder(node) {
+        if(node){
+            var len = node.children.length;
+            for(var i=0; i<len; i++){
+                postOrder(node.children[i]);
+            }
+            arrPost.push(node);
+        }
+    }
+    function render(arr){
+        var i = 0;
+        var len = arr.length;
+        var timer =  setInterval(function () {
+            if(i>len){
+                arr[i-1].style.background = "#fff";
+                clearInterval(timer);
+            }else if(i>0){
+                arr[i-1].style.background = "#fff";
+            }
+            arr[i].style.background = "#ccc";
+            i++;
+        },500)
+    }
+    preOrder(node);
+    inOrder(node);
+    postOrder(node);
+    fieldset.onclick = function (ev) {
+        var e = ev||event;
+        switch (e.target.id){
+            case 'btnPre':
+                render(arrPre);
+                break;
+            case 'btnIn':
+                render(arrIn);
+                break;
+            case 'bntPost':
+                alert(1);
+                render(arrPost);
+                break;
+        }
     }
 </script>
 </body>
