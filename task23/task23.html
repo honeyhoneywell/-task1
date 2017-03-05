@@ -85,7 +85,7 @@
 </div>
 <fieldset>
     <legend>这只是个框而已</legend>
-    <input type="text" value="请输入你要查找的内容">
+    <input type="text" id="textIn" value="请输入你要查找的内容">
     <input type="button" name="" id="btnPre" value="前序遍历">
     <input type="button" name="" id="btnIn" value="中序遍历">
     <input type="button" name="" id="bntPost" value="后序遍历">
@@ -94,10 +94,12 @@
 <script>
     var node = document.getElementsByTagName('div')[0],
         fieldset = document.getElementsByTagName('fieldset')[0],
+        textIn = document.getElementById('textIn');
         arrPre = [],
         arrIn = [],
         arrPost = [],
         arrBreadth  = [];
+    //  前序
     function preOrder(node) {
         if(node){
             arrPre.push(node);
@@ -107,6 +109,7 @@
             }
         }
     }
+    //中序
     function inOrder(node) {
         if(node){
             var len = node.children.length;
@@ -117,6 +120,7 @@
             }
         }
     }
+    //后序
     function postOrder(node) {
         if(node){
             var len = node.children.length;
@@ -126,23 +130,57 @@
             arrPost.push(node);
         }
     }
+    //广度
+    function breadth(node){
+        if(node){
+            var arr = [];
+            arr.push(node);
+            while(arr.length){
+                node = arr.shift();
+                arrBreadth.push(node);
+                if(node.children){
+                    for(var i=0,len=node.children.length; i<len; i++){
+                        arr.push(node.children[i]);
+                    }
+                }
+            }
+        }
+    }
+    //动画
     function render(arr){
-        var i = 0;
         var len = arr.length;
+        for(var n=0; n<len; n++){
+            arr[n].style.background = "#fff";
+        }
+        var i = 0;
         var timer =  setInterval(function () {
-            if(i>len){
+            if(i===len){
                 arr[i-1].style.background = "#fff";
                 clearInterval(timer);
             }else if(i>0){
                 arr[i-1].style.background = "#fff";
             }
-            arr[i].style.background = "#ccc";
+            if(i<len){
+                arr[i].style.background = "#ccc";
+                if(arr[i].firstChild.innerText){
+                    var str = arr[i].firstChild.innerText;
+                    str = str.trim();
+                }else{
+                    var str = arr[i].firstChild.textContent;
+                    str = str.trim();
+                }
+                if(str==textIn.value){
+                    alert('找到了');
+                    clearInterval(timer);
+                }
+            }
             i++;
         },500)
     }
     preOrder(node);
     inOrder(node);
     postOrder(node);
+    breadth(node);
     fieldset.onclick = function (ev) {
         var e = ev||event;
         switch (e.target.id){
@@ -153,8 +191,13 @@
                 render(arrIn);
                 break;
             case 'bntPost':
-                alert(1);
                 render(arrPost);
+                break;
+            case 'bntBreadth':
+                render(arrBreadth);
+                break;
+            case 'textIn':
+                textIn.value = '';
                 break;
         }
     }
