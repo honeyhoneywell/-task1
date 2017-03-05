@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            font-size: 12px;
+            border: 1px solid #cccccc;
+            padding: 10px;
+            margin: 10px;
+            min-width: 20px;
+            min-height: 20px;
+            background: #ffffff;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        fieldset{
+            border: #cccccc 1px solid;
+            /*height: 50px;*/
+        }
+        legend{
+            font-size: 14px;
+            color: #cccccc;
+        }
+        input{
+            border: 1px solid #cccccc;
+            height: 20px;
+            background: #ffffff;
+            margin-bottom: 30px;
+        }
+        input[type="text"]{
+            width: 200px;
+            margin-right: 50px;
+            color: #808080;
+        }
+        input[type="button"]{
+            height: 30px;
+            margin-right: 20px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            color: #333333;
+        }
+        input[type="button"]:hover{
+            color: #4d97ff;
+            background: #D1E2FF;
+            border: 1px solid #a6cdff;
+            -webkit-box-shadow: 0 4px  20px  #b7e5ff;
+            -moz-box-shadow: 0 4px  20px #b7e5ff;
+            box-shadow: 0 4px  20px  #b7e5ff;
+        }
+    </style>
+</head>
+<body>
+<div>Super
+    <div>What
+        <div>Apple
+            <div>Pear</div>
+            <div>Pig</div>
+            <div>Cola</div>
+            <div>Soccer</div>
+        </div>
+        <div>Phone</div>
+        <div>Blank
+            <div>Book</div>
+            <div>School</div>
+        </div>
+    </div>
+    <div>Note
+        <div>Human
+            <div>Code</div>
+            <div>Operate</div>
+            <div>Man</div>
+        </div>
+        <div>Program
+            <div>Bement
+                <div>Cat</div>
+            </div>
+            <div>Glass</div>
+        </div>
+    </div>
+    <div>Fish</div>
+</div>
+<fieldset>
+    <legend>这只是个框而已</legend>
+    <input type="text" id="textIn" value="请输入你要查找的内容">
+    <input type="button" name="" id="btnPre" value="前序遍历">
+    <input type="button" name="" id="btnIn" value="中序遍历">
+    <input type="button" name="" id="bntPost" value="后序遍历">
+    <input type="button" name="" id="bntBreadth" value="广度遍历"><br>
+    <input type="text" id="textAdd" value="请输入你要添加的内容">
+    <input type="button" name="" id="btnAdd" value="在选中的节点下添加子节点">
+    <input type="button" name="" id="btnDelete" value="删除所选的节点">
+</fieldset>
+<script>
+    var node = document.getElementsByTagName('div')[0],
+            fieldset = document.getElementsByTagName('fieldset')[0],
+            textIn = document.getElementById('textIn'),
+            textAdd = document.getElementById('textAdd'),
+            arrPre = [],
+            arrIn = [],
+            arrPost = [],
+            arrBreadth  = [],
+            arrDelete = '';
+    //  前序
+    function preOrder(node) {
+        if(node){
+            arrPre.push(node);
+            for(var i=0,len=node.children.length; i<len; i++){
+                preOrder(node.children[i])
+            }
+        }
+    }
+    //中序
+    function inOrder(node) {
+        if(node){
+            inOrder(node.children[0]);
+            arrIn.push(node);
+            for(var i=1,len=node.children.length; i<len; i++){
+                inOrder(node.children[i])
+            }
+        }
+    }
+    //后序
+    function postOrder(node) {
+        if(node){
+            for(var i=0,len=node.children.length; i<len; i++){
+                inOrder(node.children[i])
+            }
+            arrIn.push(node);
+        }
+    }
+    //广度
+    function breadth(node){
+        if(node){
+            var arr = [];
+            arr.push(arr);
+            while(arr.children){
+                node = arr.shift();
+                arrBreadth(node);
+                if(node.children){
+                    for(var i=0,len=node.children.length; i<len; i++){
+                        arr.push(node.children[i])
+                    }
+                }
+            }
+        }
+    }
+    //动画
+    function render(arr){
+        var len = arr.length;
+        for(var n=0; n<len; n++){
+            arr[n].style.background = "#fff";
+        }
+        var i = 0;
+        var timer =  setInterval(function () {
+            if(i===len){
+                arr[i-1].style.background = "#fff";
+                clearInterval(timer);
+            }else if(i>0){
+                arr[i-1].style.background = "#fff";
+            }
+            if(i<len){
+                arr[i].style.background = "#ccc";
+                if(arr[i].firstChild.innerText){
+                    var str = arr[i].firstChild.innerText;
+                    str = str.trim();
+                }else{
+                    var str = arr[i].firstChild.textContent;
+                    str = str.trim();
+                }
+                if(str==textIn.value){
+                    alert('找到了');
+                    clearInterval(timer);
+                }
+            }
+            i++;
+        },500)
+    }
+    preOrder(node);
+    inOrder(node);
+    postOrder(node);
+    breadth(node);
+    fieldset.onclick = function (ev) {
+        var e = ev||event;
+        switch (e.target.id){
+            case 'btnPre':
+                render(arrPre);
+                break;
+            case 'btnIn':
+                render(arrIn);
+                break;
+            case 'bntPost':
+                render(arrPost);
+                break;
+            case 'bntBreadth':
+                render(arrBreadth);
+                break;
+            case 'textIn':
+                textIn.value = '';
+                break;
+            case 'textAdd':
+                textAdd.value = '';
+                break;
+            case 'btnDelete':
+                if(arrDelete){
+                    arrDelete.parentNode.removeChild(arrDelete);
+                }else{
+                    alert('请先选择你要删除的节点')
+                }
+                break;
+            case 'btnAdd':
+                if(textAdd.value){
+                    if(arrDelete) {
+                        var oDiv = document.createElement('div');
+                        oDiv.innerHTML = textAdd.value;
+                        arrDelete.appendChild(oDiv);
+                    }else {
+                        alert('请先选择节点')
+                    }
+                }else {
+                    alert('请输入内容')
+                }
+        }
+    };
+
+    node.onclick = function (ev) {
+        var e = ev||event;
+        for(var n=0,len = arrPre.length; n<len; n++){
+            arrPre[n].style.background = "#fff";
+        }
+        arrDelete = e.target;
+        e.target.style.background = "#ccc";
+    }
+</script>
+</body>
+</html>
