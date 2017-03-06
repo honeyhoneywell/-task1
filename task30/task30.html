@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            margin: 20px 0;
+        }
+        label{
+            display: inline-block;
+            font-size: 14px;
+            color: #626262;
+            height: 30px;
+            width: 80px;
+            text-align: right;
+        }
+        input[type='text']{
+            width: 320px;
+            height: 30px;
+            margin-left: 30px;
+            border: 1px solid #cccccc;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type='text']:active{
+            -webkit-box-shadow: 0 0 0px 1px #4d97ff;
+            -moz-box-shadow: 0 0 0px 1px #4d97ff;
+            box-shadow: 0 0 0px 1px #4d97ff;
+        }
+        input[type='button']{
+            border: none;
+            height: 30px;
+            width: 80px;
+            margin-left: 352px;
+            -webkit-border-radius:4px;
+            -moz-border-radius:4px;
+            border-radius:4px;
+            outline: none;
+            background: #6a7ba1;
+            color: #ffffff;
+        }
+        input[type='button']:hover{
+            background: #4c72a1;
+        }
+        input[type='button']:active{
+            background: #3367a1;
+        }
+    </style>
+</head>
+<body>
+<form action="">
+    <div><label for="">名称</label><input type="text"></div>
+    <div><label for="">密码</label><input type="text"></div>
+    <div></div><label for="">确认密码</label><input type="text"></div>
+    <div><label for="">邮箱</label><input type="text"></div>
+    <div><label for="">手机</label><input type="text"></div>
+    <input type="button" value="提交">
+</form>
+
+
+</body>
+</html>
