@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+        }
+        label{
+            margin-left: 20px
+        }
+        input{
+            margin-left: 30px;
+            outline: none;
+        }
+        input[type='text']{
+            border: 1px solid #cccccc;
+            -webkit-border-radius:4px;
+            -moz-border-radius:4px;
+            border-radius:4px;
+            padding: 0;
+            width: 200px;
+            height: 30px;
+        }
+        input[type='button']{
+            border: 1px solid #cccccc;
+            -webkit-border-radius:4px;
+            -moz-border-radius:4px;
+            border-radius:4px;
+            width: 60px;
+            height: 30px;
+            background: #ffffff;
+        }
+        input[type='button']:hover{
+            background: #f3f3f3;
+        }
+        input[type='button']:active{
+            background: #cccccc;
+        }
+        form{
+            position: relative;
+        }
+        span{
+            position: absolute;
+            font-size: 14px;
+            color: #cccccc;
+            top: 40px;
+            left: 90px;
+        }
+    </style>
+</head>
+<body>
+<form action="">
+    <label for="textIn">名称</label><input id="textIn" type="text"><input type="button" value="验证">
+    <span id="tip">必填,长度为4-16个字符</span>
+</form>
+
+<script>
+    var inputs = document.getElementsByTagName('input'),
+            re = /([\u4e00-\u9fa5])/g,
+            tip = document.getElementsByTagName('span')[0];
+
+    inputs[0].onfocus = function () {
+        this.value = "";
+        tip.innerHTML = '必填,长度为4-16个字符';
+        tip.style.cssText = 'color:#cccccc';
+        inputs[0].style.cssText = 'border:1px solid #cccccc';
+    };
+    inputs[1].onclick = function (){
+        if(!(inputs[0].value.trim())){
+            tip.innerHTML = '名称不能为空';
+            tip.style.cssText = 'color:#CC2C0E';
+            inputs[0].style.cssText = 'border:1px solid #CC2C0E';
+        }else{
+            var str = inputs[0].value.trim();
+            str = str.replace(re,function ($0) {
+                return $0+$0;
+            });
+            if(str.length>16||str.length<4){
+                tip.innerHTML = '请输入长度为4~16位字符';
+                tip.style.cssText = 'color:#CC2C0E';
+                inputs[0].style.cssText = 'border:1px solid #CC2C0E';
+            }else {
+                tip.innerHTML = '格式正确';
+                tip.style.cssText = 'color:#50CC2E';
+                inputs[0].style.cssText = 'border:1px solid #50CC2E';
+            }
+        }
+    }
+</script>
+</body>
+</html>
