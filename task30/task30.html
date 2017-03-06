@@ -9,7 +9,7 @@
             padding: 0;
         }
         div{
-            margin: 20px 0;
+            margin-top: 20px;
         }
         label{
             display: inline-block;
@@ -18,6 +18,8 @@
             height: 30px;
             width: 80px;
             text-align: right;
+            vertical-align: middle;
+            line-height: 30px;
         }
         input[type='text']{
             width: 320px;
@@ -52,23 +54,37 @@
         input[type='button']:active{
             background: #3367a1;
         }
+        span{
+            margin-left: 120px;
+            font-size: 12px;
+            color: #8d8d8d;
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
 <form action="">
-    <div><label for="">名称</label><input type="text"></div>
-    <span>adasdasd</span>
-    <div><label for="">密码</label><input type="text"></div>
-    <span>adasdasd</span>
-    <div><label for="">确认密码</label><input type="text"></div>
-    <span>adasdasd</span>
-    <div><label for="">邮箱</label><input type="text"></div>
-    <span>adasdasd</span>
-    <div><label for="">手机</label><input type="text"></div>
-    <span>adasdasd</span>
+    <div><label for="username">名称</label><input id="username" type="text"></div>
+    <span>必填,长度为4-16个字符</span>
+    <div><label for="secret1">密码</label><input id="secret1" type="text"></div>
+    <span>必填,长度为4-16个字符</span>
+    <div><label for="secret2">确认密码</label><input id="secret2" type="text"></div>
+    <span>再次输入相同的密码</span>
+    <div><label for="email">邮箱</label><input id="email" type="text"></div>
+    <span>请输入正确的邮箱</span>
+    <div><label for="phone">手机</label><input id="phone" type="text"></div>
+    <span>请输入11位手机号码</span><br>
     <input type="button" value="提交">
 </form>
-
-
+<script>
+    var oForm = document.getElementsByTagName('form')[0],
+        spans = document.getElementsByTagName('span'),
+        inputs = document.getElementsByTagName('input');
+    for(var i= 0,len = spans.length;i<len;i++){
+        inputs[i].onclick = function () {
+            spans[i].style.visibility = "";
+        }
+    }
+</script>
 </body>
 </html>
