@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        form{
+            width: 500px;
+            border: 1px solid #cccccc;
+            margin: 20px auto;
+        }
+        section{
+            margin: 40px 0;
+        }
+
+        label{
+            font-size: 14px;
+            margin-left: 6px;
+        }
+        section#statusBox input{
+            margin-left: 50px;
+            width: 14px;
+            height: 14px;
+        }
+        section#schoolBox, section#companyBox{
+            margin-left: 40px;
+        }
+        section#schoolBox select{
+            width: 120px;
+        }
+        section#companyBox{
+            display: none;
+        }
+        section#companyBox input{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<form action="">
+    <section id="statusBox">
+        <input type="radio" id="student" name="status"><label for="student">在校生</label>
+        <input type="radio" id="noStudent" name="status"><label for="noStudent">非在校生</label>
+    </section>
+    <section id="schoolBox">
+        <label for="city">城市</label>
+        <select id="city">
+            <option value="0">北京</option>
+            <option value="1">上海</option>
+        </select>
+        <label for="school">学校</label>
+        <select id="school">
+        </select>
+    </section>
+    <section id="companyBox">
+        <label for="company">就业单位</label>
+        <input id="company" type="text">
+    </section>
+</form>
+<script>
+    var radios = document.getElementsByTagName('input'),
+        data = {
+        city:['北京','上海'],
+        school:[
+            ['北京大学','清华大学','北京航空航天大学','人民大学'],
+            ['复旦大学','上海交通大学','华东政法大学','同济大学']
+        ]
+    };
+
+    radios[0].checked = true;
+    function statuChoose() {
+        var schoolBox = document.getElementById('schoolBox');
+        var companyBox = document.getElementById('companyBox');
+        if(radios[0].checked){
+            schoolBox.style.display = 'block';
+            companyBox.style.display = 'none';
+        }else if(radios[1].checked){
+            schoolBox.style.display = 'none';
+            companyBox.style.display = 'block';
+        }
+    }
+    function schoolOption() {
+        var city = document.getElementById('city');
+        var school = document.getElementById('school');
+        var str = '';
+        for(var i in data.school[city.value]){
+            str += '<option>' + data.school[city.value][i] + '</option>';
+        }
+        school.innerHTML = str;
+    }
+
+    statuChoose();
+    schoolOption();
+    statusBox.onclick = statuChoose;
+    city.onchange = schoolOption;
+</script>
+</body>
+</html>
