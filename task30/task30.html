@@ -55,7 +55,7 @@
             background: #3367a1;
         }
         span{
-            margin-left: 120px;
+            margin-left: 110px;
             font-size: 12px;
             color: #8d8d8d;
             visibility: hidden;
@@ -69,11 +69,11 @@
         <span>必填,长度为4-16个字符</span>
     </section>
     <section>
-        <label for="secret1">密码</label><input id="secret1" type="text"><br>
+        <label for="password1">密码</label><input id="password1" type="text"><br>
         <span>必填,长度为4-16个字符</span>
     </section>
     <section>
-        <label for="secret2">确认密码</label><input id="secret2" type="text"><br>
+        <label for="password2">确认密码</label><input id="password2" type="text"><br>
         <span>再次输入相同的密码</span>
     </section>
     <section>
@@ -87,16 +87,105 @@
     <input type="button" value="提交">
 </form>
 <script>
-    var oForm = document.getElementsByTagName('form')[0],
-        spans = document.getElementsByTagName('span'),
+    var spans = document.getElementsByTagName('span'),
         inputs = document.getElementsByTagName('input');
     var re = {
         userName:/([\u4e00-\u9fa5])/g,
-        secret:/^\w{4,16}$/,
+        password:/^\w{4,16}$/,
         mail:/^\w+@[a-z0-9]+(\.[a-z]+){1,3}$/,
         phone:/^1[34578]\d{9}$/
     };
-
+    var result = {
+        value:true,
+        text:''
+    };
+    for(var i=0,len=spans.length;i<len;i++){
+        inputs[i].onclick = function () {
+            var sec = this.parentNode;
+            sec.getElementsByTagName('span')[0].style.visibility = 'visible';
+        };
+        inputs[i].onblur = function () {
+            var ospan = this.parentNode.getElementsByTagName('span')[0];
+            check(this);
+            ospan.innerHTML = result.text;
+            if(result.value){
+                ospan.style.color = '#3ED626';
+                this.style.border = '1px solid #3ED626';
+            }else{
+                ospan.style.color = '#C52218';
+                this.style.border = '1px solid #C52218';
+            }
+        }
+    }
+    inputs[5].onclick = function () {
+        if(!result.value){
+            alert('填写有误请检查')
+        }else{
+            alert('填写正确')
+        }
+    };
+    function check(obj) {
+        var string = obj.value.trim();
+        if(string.length ===0){
+            result.value = false;
+            result.text = '输入不能为空';
+            return;
+        }
+        //名称
+        if(obj.id === 'username'){
+            string = string.replace(re.userName,function ($0) {
+                return $0+$0;
+            });
+            if(string.length>3&&string.length<17){
+                result.value = true;
+                result.text = '格式正确';
+            }else {
+                result.value = false;
+                result.text = '请检查名称长度';
+            }
+        }
+        //密码
+        if(obj.id === 'password1'){
+            if(!re.password.test(string)){
+                result.value = false;
+                result.text = '输入有误,密码只能是4-16个数字和字母';
+            }else{
+                result.value = true;
+                result.text = '格式正确';
+            }
+        }
+        //确认密码
+        if(obj.id === 'password2'){
+            var password = inputs[1].value;
+            if(re.password.test(string)&&password===string){
+                result.value = true;
+                result.text = '格式正确';
+            }else {
+                result.value = false;
+                result.text = '两次密码不一致';
+            }
+        }
+        //邮箱
+        if(obj.id === 'email'){
+            if(!re.mail.test(string)){
+                result.value = false;
+                result.text = '输入有误,请输入正确的邮箱';
+            }else {
+                result.value = true;
+                result.text = '格式正确';
+            }
+        }
+        //手机
+        if(obj.id === 'phone'){
+            if(!re.phone.test(string)){
+                result.value = false;
+                result.text = '输入有误,请输入正确的手机号码';
+            }else {
+                result.value = true;
+                result.text = '格式正确';
+            }
+        }
+    }
 </script>
 </body>
 </html>
