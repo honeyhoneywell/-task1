@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        li{
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            text-align: center;
+            line-height: 30px;
+        }
+        ul#axisX li{
+            float: left;
+        }
+        ul#axisX:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        section#control{
+            margin: 40px;
+        }
+        section#control input[type='text']{
+            height: 28px;
+            border: 1px solid #cccccc;
+        }
+        section#control input[type='button']{
+            border: 1px solid #cccccc;
+            width: 60px;
+            height: 30px;
+            background: #ffffff;
+        }
+        ul#table {
+            width: 300px;
+            border: 1px solid #898989;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        ul#table li{
+            float: left;
+            border-bottom: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+        }
+        ul#table:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        section#content{
+            position: relative;
+        }
+        #box{
+            width: 30px;
+            height: 30px;
+            background: #ff683e;
+            position: absolute;
+            top: 300px;
+            left: 300px;
+            box-sizing: border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+        }
+    </style>
+</head>
+<body>
+    <section id="content">
+        <ul id="axisX">
+            <li></li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+        <ul id="axisY">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+        <ul id="table"></ul>
+        <div id="box"></div>
+    </section>
+    <section id="control">
+        <input type="text">
+        <input type="button" value="执行" onclick=doMove()>
+    </section>
+    <script>
+        function create() {
+            var table = document.getElementById('table');
+            var str = '';
+            for (var i=0; i<100; i++){
+                var oLi = '<li></li>';
+                str += oLi;
+            }
+            table.innerHTML += str;
+        }
+        create();
+
+        var data = {
+            dir:0,
+            tip:"4px solid #4752ff;",
+            reset:"border: none"
+        };
+
+        function render(dir){
+            var box = document.getElementById('box');
+            if(dir===0){
+                box.style.cssText += 'border-right:' + data.tip;
+            }else if(dir===1){
+                box.style.cssText += 'border-bottom:' + data.tip;
+            }else if(dir===2){
+                box.style.cssText += 'border-left:' + data.tip;
+            }else if(dir===3){
+                box.style.cssText += 'border-top:' + data.tip;
+            }
+        }
+        render(data.dir);
+        function turnOff() {
+            var box = document.getElementById('box');
+            var commond = document.getElementsByTagName('input')[0].value;
+            if(commond === 'TUN LEF'){
+                data.dir--;
+                if(data.dir<0){data.dir += 4};
+                render(data.dir);
+            }
+            if(commond === 'TUN RIG'){
+                data.dir++;
+                if(data.dir>3){data.dir = data.dir-4}
+                render(data.dir);
+            }
+            if(commond === 'TUN BAC'){
+                data.dir += 2;
+                if(data.dir>3){data.dir = data.dir-4}
+                render(data.dir);
+            }
+        }
+        function doGo(dir){
+            var box = document.getElementById('box');
+            var disX = getStyle(box,'left');
+            var disY = getStyle(box,'top');
+            if(dir===0 && disX<300){
+                disX += 30;
+                box.style.left = disX +'px';
+            }else if(dir===0 && disX>=300){
+                alert('到头了');
+            }else if(dir===1 && disY<300){
+                disY += 30;
+                box.style.top = disY +'px';
+            }else if(dir===1 && disY>=300){
+                alert('到头了');
+            }else if(dir===2 && disX>30){
+                disX -= 30;
+                box.style.left = disX +'px';
+            }else if(dir===2 && disX<=30){
+                alert('到头了');
+            }else if(dir===3 && disY>30){
+                disY -= 30;
+                box.style.top = disY +'px';
+            }else if(dir===3 && disY<=30){
+                alert('到头了');
+            }
+        }
+        function getStyle(obj,attr) {
+            return obj.currentStyle? parseFloat(obj.currentStyle[attr]) : parseFloat(window.getComputedStyle(obj)[attr]);
+        }
+        function doMove() {
+            var commond = document.getElementsByTagName('input')[0].value;
+            if(commond==="GO"){
+                doGo(data.dir);
+            }else {
+                turnOff();
+            }
+            console.log(data.dir)
+        }
+    </script>
+</body>
+</html>
