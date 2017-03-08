@@ -42,13 +42,13 @@
 </head>
 <body>
 <form action="">
-    <section id="statusBox">
-        <input type="radio" id="student" name="status"><label for="student">在校生</label>
+    <section id="statusBox" onclick=statuChoose()>
+        <input type="radio" id="student" name="status" checked = true><label for="student">在校生</label>
         <input type="radio" id="noStudent" name="status"><label for="noStudent">非在校生</label>
     </section>
     <section id="schoolBox">
         <label for="city">城市</label>
-        <select id="city">
+        <select id="city" onchange = schoolOption() >
             <option value="0">北京</option>
             <option value="1">上海</option>
         </select>
@@ -62,19 +62,10 @@
     </section>
 </form>
 <script>
-    var radios = document.getElementsByTagName('input'),
-        data = {
-        city:['北京','上海'],
-        school:[
-            ['北京大学','清华大学','北京航空航天大学','人民大学'],
-            ['复旦大学','上海交通大学','华东政法大学','同济大学']
-        ]
-    };
-
-    radios[0].checked = true;
     function statuChoose() {
-        var schoolBox = document.getElementById('schoolBox');
-        var companyBox = document.getElementById('companyBox');
+        var schoolBox = document.getElementById('schoolBox'),
+            companyBox = document.getElementById('companyBox'),
+            radios = document.getElementsByTagName('input');
         if(radios[0].checked){
             schoolBox.style.display = 'block';
             companyBox.style.display = 'none';
@@ -84,19 +75,23 @@
         }
     }
     function schoolOption() {
-        var city = document.getElementById('city');
-        var school = document.getElementById('school');
+        var city = document.getElementById('city'),
+            school = document.getElementById('school'),
+            data = {
+                city:['北京','上海'],
+                school:[
+                    ['北京大学','清华大学','北京航空航天大学','人民大学'],
+                    ['复旦大学','上海交通大学','华东政法大学','同济大学']
+                ]
+            };
         var str = '';
         for(var i in data.school[city.value]){
             str += '<option>' + data.school[city.value][i] + '</option>';
         }
         school.innerHTML = str;
     }
-
     statuChoose();
     schoolOption();
-    statusBox.onclick = statuChoose;
-    city.onchange = schoolOption;
 </script>
 </body>
 </html>
