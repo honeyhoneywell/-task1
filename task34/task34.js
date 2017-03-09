@@ -12,7 +12,8 @@ create();   //创建格子
 var data = {
     dir:0,
     border:"4px solid #4752ff",
-    deg:0
+    deg:0,
+    flag:true
 };
 
 //运转
@@ -23,17 +24,17 @@ function control() {
         case "TUN LEF":
             data.dir--;
             if(data.dir<0){data.dir += 4}
-            turn(-10,9);
+            turn(box,-10,90);
             break;
         case "TUN RIG":
             data.dir++;
             if(data.dir>3){data.dir = data.dir-4}
-            box.style.transform = "rotate(90deg)";
-            turn(10,9);
+            turn(box,10,90);
             break;
         case "TUN BAC":
             data.dir += 2;
-            turn(10,18);
+            if(data.dir>3){data.dir = data.dir-4}
+            turn(box,10,180);
             break;
         case "GO":
             doGo(data.dir);
@@ -51,21 +52,37 @@ function control() {
             doGo(1);
             break;
         case "MOV LEF":
+            var n = Math.abs(data.dir-2);
             data.dir=2;
+            turn(box,10,90*n,function () {
+                doGo(data.dir);
+            });
             break;
         case "MOV RIG":
+            var n = Math.abs(data.dir-0);
             data.dir=0;
+            turn(box,10,90*n,function () {
+                doGo(data.dir);
+            });
             break;
         case "MOV TOP":
+            var n = Math.abs(data.dir-3);
             data.dir=3;
+            turn(box,10,90*n,function () {
+                doGo(data.dir);
+            });
             break;
         case "MOV BOT":
+            var n = Math.abs(data.dir-1);
             data.dir=1;
+            turn(box,10,90*n,function () {
+                doGo(data.dir);
+            });
             break;
     }
 }
 
-//前进
+//边界判定前进
 function doGo(dir){
     var box = document.getElementById('box');
     var disX = parseFloat(getStyle(box,'left'));
@@ -90,27 +107,36 @@ function doGo(dir){
 }
 //前进动画
 function goTo(obj,attr,dir){
+    if(!data.flag){return;}
+    data.flag = false;
     if(dir===2||dir===3){dir=-1}else{dir=1}
     var target = 0;
     var dis = parseFloat(getStyle(obj,attr));
     var timer = setInterval(function () {
         target += 2;
+        obj.style[attr] = (dis + target*dir) + 'px';
         if(target===30){
             clearInterval(timer);
+            data.flag = true;
         }
-        obj.style[attr] = (dis + target*dir) + 'px';
     },20)
 }
 //旋转动画
-function turn(speed,target,endFn){
-    var box = document.getElementById('box');
+function turn(obj,speed,target,endFn){
+    if(target===0){
+        endFn&&endFn();
+        return;
+    }
+    if(!data.flag){return;}
+    data.flag = false;
     var dir = 0;
     var timer = setInterval(function () {
         dir += speed;
-        data.deg += speed;
-        box.style.transform = "rotate("+ data.deg +"deg)";
-        if(Math.abs(dir/speed)===target){
+        data.deg = (data.deg + speed)%360;
+        obj.style.transform = "rotate("+ data.deg +"deg)";
+        if(Math.abs(dir)===target){
             clearInterval(timer);
+            data.flag = true;
             endFn&&endFn();
         }
     },20)
