@@ -70,6 +70,11 @@
             -moz-box-sizing:border-box; /* Firefox */
             -webkit-box-sizing:border-box; /* Safari */
         }
+        p{
+            white-space: pre-wrap;
+            line-height: 20px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -104,96 +109,15 @@
     </section>
     <section id="control">
         <input type="text">
-        <input type="button" value="执行" onclick=doMove()>
+        <input type="button" value="执行" onclick=control()>
     </section>
-    <script>
-        function create() {
-            var table = document.getElementById('table');
-            var str = '';
-            for (var i=0; i<100; i++){
-                var oLi = '<li></li>';
-                str += oLi;
-            }
-            table.innerHTML += str;
-        }
-        create();
-
-        var data = {
-            dir:0,
-            tip:"4px solid #4752ff;",
-            reset:"border: none"
-        };
-
-        function render(dir){
-            var box = document.getElementById('box');
-            if(dir===0){
-                box.style.cssText += 'border-right:' + data.tip;
-            }else if(dir===1){
-                box.style.cssText += 'border-bottom:' + data.tip;
-            }else if(dir===2){
-                box.style.cssText += 'border-left:' + data.tip;
-            }else if(dir===3){
-                box.style.cssText += 'border-top:' + data.tip;
-            }
-        }
-        render(data.dir);
-        function turnOff() {
-            var box = document.getElementById('box');
-            var commond = document.getElementsByTagName('input')[0].value;
-            if(commond === 'TUN LEF'){
-                data.dir--;
-                if(data.dir<0){data.dir += 4};
-                render(data.dir);
-            }
-            if(commond === 'TUN RIG'){
-                data.dir++;
-                if(data.dir>3){data.dir = data.dir-4}
-                render(data.dir);
-            }
-            if(commond === 'TUN BAC'){
-                data.dir += 2;
-                if(data.dir>3){data.dir = data.dir-4}
-                render(data.dir);
-            }
-        }
-        function doGo(dir){
-            var box = document.getElementById('box');
-            var disX = getStyle(box,'left');
-            var disY = getStyle(box,'top');
-            if(dir===0 && disX<300){
-                disX += 30;
-                box.style.left = disX +'px';
-            }else if(dir===0 && disX>=300){
-                alert('到头了');
-            }else if(dir===1 && disY<300){
-                disY += 30;
-                box.style.top = disY +'px';
-            }else if(dir===1 && disY>=300){
-                alert('到头了');
-            }else if(dir===2 && disX>30){
-                disX -= 30;
-                box.style.left = disX +'px';
-            }else if(dir===2 && disX<=30){
-                alert('到头了');
-            }else if(dir===3 && disY>30){
-                disY -= 30;
-                box.style.top = disY +'px';
-            }else if(dir===3 && disY<=30){
-                alert('到头了');
-            }
-        }
-        function getStyle(obj,attr) {
-            return obj.currentStyle? parseFloat(obj.currentStyle[attr]) : parseFloat(window.getComputedStyle(obj)[attr]);
-        }
-        function doMove() {
-            var commond = document.getElementsByTagName('input')[0].value;
-            if(commond==="GO"){
-                doGo(data.dir);
-            }else {
-                turnOff();
-            }
-            console.log(data.dir)
-        }
-    </script>
+    <p>
+        在输入框中允许输入如下指令，按下按钮后，使得正方形做相应动作
+        GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长）
+        TUN LEF：向左转（逆时针旋转90度）
+        TUN RIG：向右转（顺时针旋转90度）
+        TUN BAC：向右转（旋转180度）
+    </p>
+    <script src="task33.js"></script>
 </body>
 </html>
