@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        li{
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            text-align: center;
+            line-height: 30px;
+        }
+        ul#axisX li{
+            float: left;
+        }
+        ul#axisX:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        section#control{
+            margin: 40px;
+        }
+        section#control input[type='text']{
+            height: 28px;
+            border: 1px solid #cccccc;
+        }
+        section#control input[type='button']{
+            border: 1px solid #cccccc;
+            width: 60px;
+            height: 30px;
+            background: #ffffff;
+        }
+        ul#table {
+            width: 300px;
+            border: 1px solid #898989;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        ul#table li{
+            float: left;
+            border-bottom: 1px solid #cccccc;
+            border-right: 1px solid #cccccc;
+        }
+        ul#table:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        section#content{
+            position: relative;
+        }
+        #box{
+            width: 30px;
+            height: 30px;
+            background: #ff683e;
+            position: absolute;
+            top: 300px;
+            left: 300px;
+            box-sizing: border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            border-right: 4px solid #4752ff;
+        }
+        p{
+            white-space: pre-wrap;
+            line-height: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<section id="content">
+    <ul id="axisX">
+        <li></li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <ul id="axisY">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <ul id="table"></ul>
+    <div id="box"></div>
+</section>
+<section id="control">
+    <input type="text">
+    <input type="button" value="执行" onclick=control()>
+</section>
+<p>
+    在输入框中允许输入如下指令，按下按钮后，使得正方形做相应动作
+    GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长）
+    TUN LEF：向左转（逆时针旋转90度）
+    TUN RIG：向右转（顺时针旋转90度）
+    TUN BAC：向右转（旋转180度）
+    TRA LEF：向屏幕的左侧移动一格，方向不变
+    TRA TOP：向屏幕的上面移动一格，方向不变
+    TRA RIG：向屏幕的右侧移动一格，方向不变
+    TRA BOT：向屏幕的下面移动一格，方向不变
+    MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格
+    MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格
+    MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格
+    MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格
+</p>
+<script src="task34.js"></script>
+</body>
+</html>
