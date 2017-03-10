@@ -13,7 +13,7 @@ create();   //创建格子
 var data = {
     dir:0,      //记录方向,left=0 ,bottom=1, right=2, top=3;
     deg:0,      //记录旋转的角度(-360~360);
-    flag:true   //防止定时间反复多次触发的开关
+    flag:true   //防止定时器反复多次触发的开关
 };
 
 //运转
