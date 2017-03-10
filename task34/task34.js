@@ -24,19 +24,22 @@ function control() {
     switch (command){
         /*只转向,不前进*/
         case "TUN LEF":
-            data.dir--;
-            if(data.dir<0){data.dir += 4}
-            turn(box,-10,90);
+            turn(box,-10,90,function () {
+                data.dir--;                 //把方向数值变化放在选择动画的回调函数里,防止多次点击时实际动画效果和方向数值不一致
+                if(data.dir<0){data.dir += 4}
+            });
             break;
         case "TUN RIG":
-            data.dir++;
-            if(data.dir>3){data.dir = data.dir-4}
-            turn(box,10,90);
+            turn(box,10,90,function () {
+                data.dir++;
+                if(data.dir>3){data.dir = data.dir-4}
+            });
             break;
         case "TUN BAC":
-            data.dir += 2;
-            if(data.dir>3){data.dir = data.dir-4}
-            turn(box,10,180);
+            turn(box,10,180,function () {
+                data.dir += 2;
+                if(data.dir>3){data.dir = data.dir-4}
+            });
             break;
         /*按当前方向前进*/
         case "GO":
@@ -57,14 +60,14 @@ function control() {
             break;
         /*转向之后接着前进*/
         case "MOV LEF":
-            n = 2 - data.dir;   //两次朝向的差值
+            n = 2-data.dir;   //两次朝向的差值
             data.dir=2;         //记录当前朝向
             turn(box,10,90*n,function () {
                 doGo(box,data.dir);
             });
             break;
         case "MOV RIG":
-            n = 0 - data.dir;
+            n = -data.dir ;
             data.dir=0;
             turn(box,10,90*n,function () {
                 doGo(box,data.dir);
@@ -78,7 +81,7 @@ function control() {
             });
             break;
         case "MOV BOT":
-            n = 1 - data.dir;
+            n = 1- data.dir;
             data.dir=1;
             turn(box,10,90*n,function () {
                 doGo(box,data.dir);
