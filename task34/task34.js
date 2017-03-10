@@ -10,17 +10,18 @@ function create() {
 create();   //创建格子
 
 var data = {
-    dir:0,
-    border:"4px solid #4752ff",
-    deg:0,
-    flag:true
+    dir:0,      //记录方向,left=0 ,bottom=1, right=2, top=3;
+    deg:0,      //记录旋转的角度(-360~360);
+    flag:true   //防止定时间反复多次触发的开关
 };
 
 //运转
 function control() {
     var box = document.getElementById('box');
     var command = document.getElementsByTagName('input')[0].value.trim();
+    var n;  //记录当前方向和上次方向的差值
     switch (command){
+        /*只转向,不前进*/
         case "TUN LEF":
             data.dir--;
             if(data.dir<0){data.dir += 4}
@@ -36,57 +37,59 @@ function control() {
             if(data.dir>3){data.dir = data.dir-4}
             turn(box,10,180);
             break;
+        /*按当前方向前进*/
         case "GO":
-            doGo(data.dir);
+            doGo(box,data.dir);
             break;
+        /*不方块按当前的朝向前进*/
         case "TRA LEF":
-            doGo(2);
+            doGo(box,2);
             break;
         case "TRA TOP":
-            doGo(3);
+            doGo(box,3);
             break;
         case "TRA RIG":
-            doGo(0);
+            doGo(box,0);
             break;
         case "TRA BOT":
-            doGo(1);
+            doGo(box,1);
             break;
+        /*转向之后接着前进*/
         case "MOV LEF":
-            var n = Math.abs(data.dir-2);
-            data.dir=2;
+            n = 2 - data.dir;   //两次朝向的差值
+            data.dir=2;         //记录当前朝向
             turn(box,10,90*n,function () {
-                doGo(data.dir);
+                doGo(box,data.dir);
             });
             break;
         case "MOV RIG":
-            var n = Math.abs(data.dir-0);
+            n = 0 - data.dir;
             data.dir=0;
             turn(box,10,90*n,function () {
-                doGo(data.dir);
+                doGo(box,data.dir);
             });
             break;
         case "MOV TOP":
-            var n = Math.abs(data.dir-3);
+            n = 3 - data.dir;
             data.dir=3;
             turn(box,10,90*n,function () {
-                doGo(data.dir);
+                doGo(box,data.dir);
             });
             break;
         case "MOV BOT":
-            var n = Math.abs(data.dir-1);
+            n = 1 - data.dir;
             data.dir=1;
             turn(box,10,90*n,function () {
-                doGo(data.dir);
+                doGo(box,data.dir);
             });
             break;
     }
 }
 
 //边界判定前进
-function doGo(dir){
-    var box = document.getElementById('box');
-    var disX = parseFloat(getStyle(box,'left'));
-    var disY = parseFloat(getStyle(box,'top'));
+function doGo(obj,dir){
+    var disX = parseFloat(getStyle(obj,'left'));
+    var disY = parseFloat(getStyle(obj,'top'));
     switch(true){
         case (dir===2 && disX<=30):
         /*合并下方*/
@@ -98,10 +101,10 @@ function doGo(dir){
             alert('到头了');
             break;
         case (dir===0 || dir===2):
-            goTo(box,'left',dir);
+            goTo(obj,'left',dir);
             break;
         case (dir===1 || dir===3):
-            goTo(box,'top',dir);
+            goTo(obj,'top',dir);
             break;
     }
 }
@@ -129,6 +132,8 @@ function turn(obj,speed,target,endFn){
     }
     if(!data.flag){return;}
     data.flag = false;
+    if(target<0){speed=-speed;target = Math.abs(target)}
+    if(target===270){speed=-speed;target=90}
     var dir = 0;
     var timer = setInterval(function () {
         dir += speed;
