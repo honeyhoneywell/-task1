@@ -9,6 +9,7 @@ function create() {
 }
 create();   //创建格子
 
+//数据记录
 var data = {
     dir:0,      //记录方向,left=0 ,bottom=1, right=2, top=3;
     deg:0,      //记录旋转的角度(-360~360);
@@ -86,7 +87,7 @@ function control() {
     }
 }
 
-//边界判定前进
+//边界判定&前进
 function doGo(obj,dir){
     var disX = parseFloat(getStyle(obj,'left'));
     var disY = parseFloat(getStyle(obj,'top'));
@@ -111,7 +112,7 @@ function doGo(obj,dir){
 //前进动画
 function goTo(obj,attr,dir){
     if(!data.flag){return;}
-    data.flag = false;
+    data.flag = false;      //关闭开关,防止反复
     if(dir===2||dir===3){dir=-1}else{dir=1}
     var target = 0;
     var dis = parseFloat(getStyle(obj,attr));
@@ -120,28 +121,28 @@ function goTo(obj,attr,dir){
         obj.style[attr] = (dis + target*dir) + 'px';
         if(target===30){
             clearInterval(timer);
-            data.flag = true;
+            data.flag = true;   //运转结束,打开开关
         }
     },20)
 }
 //旋转动画
 function turn(obj,speed,target,endFn){
-    if(target===0){
+    if(target===0){     //target为0,说明不用旋转,直接结束
         endFn&&endFn();
         return;
     }
-    if(!data.flag){return;}
+    if(!data.flag){return;}     //关闭开关,防止反复
     data.flag = false;
-    if(target<0){speed=-speed;target = Math.abs(target)}
+    if(target<0){speed=-speed;target = Math.abs(target)}    //根据target的值来改变旋转方向
     if(target===270){speed=-speed;target=90}
-    var dir = 0;
+    var dir = 0;    //记录旋转了多少度,来设置结束动画的点(90或180)
     var timer = setInterval(function () {
         dir += speed;
-        data.deg = (data.deg + speed)%360;
+        data.deg = (data.deg + speed)%360;      //角度控制在(-360~360)方便计算
         obj.style.transform = "rotate("+ data.deg +"deg)";
         if(Math.abs(dir)===target){
             clearInterval(timer);
-            data.flag = true;
+            data.flag = true;       //运转结束,打开开关
             endFn&&endFn();
         }
     },20)
