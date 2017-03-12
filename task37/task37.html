@@ -32,7 +32,7 @@
             width: 300px;
             height: 200px;
             box-sizing: border-box;
-            border: 20px solid #cccccc;
+            /*border: 20px solid #cccccc;*/
         }
         input{
             display: block;
@@ -54,6 +54,9 @@
     var popup = document.getElementById('popup');
     var disY = popup.offsetTop;
 
+    popup.style.left = document.documentElement.clientWidth/2-150 + 'px';
+    popup.style.top = document.documentElement.clientHeight/2-100 + 'px';
+
     btn.onclick = function () {
         mask.style.display = 'block';
         popup.style.display = 'block';
@@ -72,13 +75,29 @@
         var innerX = ev.clientX - objL;
         var innerY = ev.clientY - objT;
         var x = this.offsetWidth - innerX;
-        var y = this.offsetWidth - innerY;
+        var y = this.offsetHeight - innerY;
 
         //左右
         if(x<20){
             document.onmousemove = function (ev) {
                 var ev = ev||event;
                 popup.style.width = ev.clientX - objL + x + 'px';
+                popup.style.cursor = 'w-resize';
+            }
+        }
+        if(y<20){
+            document.onmousemove = function (ev) {
+                var ev = ev||event;
+                popup.style.height = ev.clientY - objT + y + 'px';
+                popup.style.cursor = 's-resize';
+            }
+        }
+        if(x<20&&y<20){
+            document.onmousemove = function (ev) {
+                var ev = ev||event;
+                popup.style.width = ev.clientX - objL + x + 'px';
+                popup.style.height = ev.clientY - objT + y + 'px';
+                popup.style.cursor = 'se-resize';
             }
         }
     }
