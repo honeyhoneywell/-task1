@@ -28,12 +28,11 @@
         div#popup{
             background: #ffffff;
             position: absolute;
-            left: 0;
-            top: 300px;
-            width: 300px;
-            height: 200px;
+            width: 400px;
+            height: 300px;
             box-sizing: border-box;
             display: none;
+            border: 1px solid #cccccc;
         }
         input{
             display: block;
@@ -61,8 +60,9 @@
         #popup p{
             text-align: center;
             padding: 10px;
-            line-height: 20px;
+            line-height: 24px;
             font-size: 14px;
+            color: #9b9b9b;
         }
     </style>
 </head>
@@ -72,10 +72,12 @@
 </div>
 <div id="mask"></div>
 <div id="popup">
-    <h2>这里是一个弹窗</h2>
+    <h2>这里弹窗头,点击这里可以拖动窗口位置</h2>
     <p>
         1.点击弹窗外的区域可以关闭弹窗 <br>
-        2.鼠标移动到弹窗右侧或者底部时,可以按住鼠标拖拽改变弹窗大小。
+        2.鼠标移动到弹窗右侧或者底部时,可以按住鼠标拖拽改变弹窗大小。 <br>
+        3.虽然可以拖动弹窗的位置,但当滚动或者改变浏览器窗口大小时,弹窗会回到初始位置。<br>
+        4.弹窗最小尺寸为300×200(px)。
     </p>
 </div>
 <script src="task37.js"></script>
