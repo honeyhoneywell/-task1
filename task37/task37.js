@@ -32,7 +32,7 @@ function abatvent() {
     popup.style.top = document.body.scrollTop + document.documentElement.clientHeight/2-100 + 'px';
 }
 
-//位置拖动
+//执行
 popup.addEventListener('mousedown',dragMove);
 function dragMove(e) {
     var ev = e || event;
@@ -49,7 +49,7 @@ function dragMove(e) {
     data.innerLeft = ev.pageX - popup.offsetLeft;
     data.innerRight = popup.offsetWidth -(ev.pageX - popup.offsetLeft);
     data.innerBottom = popup.offsetHeight - (ev.pageY - popup.offsetTop);
-
+    //判断拖拽还是缩放大小
     if (data.innerRight < 20 && data.innerRight > 0 && data.innerTop > 20) {
         document.addEventListener('mousemove',level);
     }
