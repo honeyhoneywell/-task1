@@ -108,15 +108,14 @@
         <div id="box"></div>
     </section>
     <section id="control">
-        <input type="text">
-        <input type="button" value="执行" onclick=control()>
+        <input type="button" value="GO" onclick=control.call(this)>
+        <input type="button" value="TUN LEF" onclick=control.call(this)>
+        <input type="button" value="TUN RIG" onclick=control.call(this)>
+        <input type="button" value="TUN BAC" onclick=control.call(this)>
     </section>
     <p>
-        在输入框中允许输入如下指令，按下按钮后，使得正方形做相应动作
-        GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长）
-        TUN LEF：向左转（逆时针旋转90度）
-        TUN RIG：向右转（顺时针旋转90度）
-        TUN BAC：向右转（旋转180度）
+        鉴于有人输错指令而误以为出BUG,特意改成按钮操作。
+        这次大家满足了吧?
     </p>
     <script src="task33.js"></script>
 </body>

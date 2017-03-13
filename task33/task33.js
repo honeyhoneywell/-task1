@@ -1,4 +1,9 @@
 
+var data = {
+    dir:0,
+    border:"4px solid #4752ff"
+};
+
 function create() {
     var table = document.getElementById('table');
     var str = '';
@@ -10,10 +15,6 @@ function create() {
 }
 create();   //创建格子
 
-var data = {
-    dir:0,
-    border:"4px solid #4752ff",
-};
 //方向渲染
 function render(dir){
     var box = document.getElementById('box');
@@ -37,7 +38,7 @@ function render(dir){
 }
 //运转以及转向判断
 function control() {
-    var command = document.getElementsByTagName('input')[0].value;
+    var command = this.value;
     switch (command){
         case "TUN LEF":
             data.dir--;
