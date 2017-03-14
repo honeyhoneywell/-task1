@@ -12,12 +12,29 @@
             height: 30px;
         }
         thead th{
-            width: 100px;
+            width: 140px;
             background: #333333;
             color: #ffffff;
         }
         td{
             width: 100px;
+            text-align: center;
+        }
+        .up{
+            margin: 0 5px;
+            display: inline-block;
+            border-bottom: 14px solid #c2cad6;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            vertical-align: middle;
+        }
+        .down{
+            margin: 0 5px;
+            display: inline-block;
+            border-top: 14px solid #c2cad6;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -26,10 +43,10 @@
     <thead>
         <tr>
             <th>姓名</th>
-            <th>语文</th>
-            <th>数学</th>
-            <th>英语</th>
-            <th>总分</th>
+            <th><span>语文</span><span class="up"></span><span class="down"></span></th>
+            <th><span>数学</span><span class="up"></span><span class="down"></span></th>
+            <th><span>英语</span><span class="up"></span><span class="down"></span></th>
+            <th><span>总分</span><span class="up"></span><span class="down"></span></th>
         </tr>
     </thead>
     <tbody></tbody>
