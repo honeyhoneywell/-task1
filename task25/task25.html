@@ -3,8 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div{
+            margin: 2px 0 2px 60px;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+    </style>
 </head>
 <body>
+<div class="node">
+    父节点1-- 展开
+    <div class="node-1">
+        父节点11-- 展开
+        <div class="leaf">叶子节点111</div>
+        <div class="leaf">叶子节点112</div>
+        <div class="leaf">叶子节点113</div>
+        <div class="leaf">叶子节点114</div>
+    </div>
+    <div class="node-1">
+        父节点12-- 展开
+        <div class="leaf">叶子节点121</div>
+        <div class="leaf">叶子节点122</div>
+        <div class="leaf">叶子节点123</div>
+        <div class="leaf">叶子节点124</div>
+    </div>
+    <div class="node-1">
+        父节点13-- 没有子节点
+    </div>
+</div>
+<div class="node">
+    父节点2-- 展开
+    <div class="node-1">
+        父节点21-- 展开
+        <div class="leaf">叶子节点211</div>
+        <div class="leaf">叶子节点212</div>
+        <div class="leaf">叶子节点213</div>
+        <div class="leaf">叶子节点214</div>
+    </div>
+    <div class="node-1">
+        父节点22-- 展开
+        <div class="leaf">叶子节点221</div>
+        <div class="leaf">叶子节点222</div>
+        <div class="leaf">叶子节点223</div>
+        <div class="leaf">叶子节点224</div>
+    </div>
+</div>
+<div class="node">
+    父节点3-- 没有子节点
+</div>
 
 </body>
 <script>
@@ -25,6 +72,32 @@
                     }
                 ];
 
-
+    var node = document.getElementsByTagName('div');
+    node = Array.prototype.slice.call(node);
+    for(var i in node){
+        if(node[i].children.length){
+            for( var j = 0, len = node[i].children.length; j<len; j++){
+                node[i].children[j].style.display = 'none';
+                node[i].children[j].flag = false;
+            }
+        }
+}
+    for(var i in node){
+        node[i].onclick = function (e) {
+            var ev = e||event;
+            ev.stopPropagation();
+            if(this.children.length){
+                for( var j = 0, len = this.children.length; j<len; j++){
+                    if(this.children[j].flag){
+                        this.children[j].style.display = 'none';
+                        this.children[j].flag = false;
+                    }else{
+                        this.children[j].style.display = 'block';
+                        this.children[j].flag = true;
+                    }
+                }
+            }
+        }
+    }
 </script>
 </html>
