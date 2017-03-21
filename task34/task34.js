@@ -18,37 +18,6 @@ function turn(obj,deg,endfn) {
     obj.style.transform = 'rotate('+ deg +'deg)';
     endfn&&endfn();
 }
-//前进
-function go(obj,deg,endfn) {
-    var disX = obj.offsetLeft;
-    var disY = obj.offsetTop;
-    if(deg === 0){
-        obj.style.left = disX + 30 + 'px';
-    }else if(deg === 90||deg === -270){
-        obj.style.top = disY + 30 + 'px';
-    }else if(deg === -90||deg === 270){
-        obj.style.top = disY - 30 + 'px';
-    }else if(deg === 180||deg ===-180){
-        obj.style.left = disX - 30 + 'px';
-    }
-    endfn&&endfn();
-}
-//边界判定
-function doGo(obj,deg) {
-    var disX = obj.offsetLeft;
-    var disY = obj.offsetTop;
-    if(deg === 0 && disX >= 300){
-        alert('到头了');
-    }else if((deg === 90||deg === -270)&&(disY >= 300)){
-        alert('到头了');
-    }else if((deg === -90||deg === 270)&&(disY <= 30)){
-        alert('到头了');
-    }else if((deg === 180||deg ===-180)&&(disX <= 30)){
-        alert('到头了');
-    }else {
-        go(obj,deg);
-    }
-}
 //运转
 function control() {
     var box = document.getElementById('box');
@@ -96,33 +65,61 @@ function control() {
             break;
         /*转向之后接着前进*/
         case "MOV LEF":
-            n = 2-data.dir;   //两次朝向的差值
-            data.dir=2;         //记录当前朝向
-            turn(box,10,90*n,function () {
-                doGo(box,data.dir);
+            turn(box,180,function () {
+                doGo(box,180);
             });
             break;
         case "MOV RIG":
-            n = -data.dir ;
-            data.dir=0;
-            turn(box,10,90*n,function () {
-                doGo(box,data.dir);
+            turn(box,0,function () {
+                doGo(box,0);
             });
             break;
         case "MOV TOP":
-            n = 3 - data.dir;
-            data.dir=3;
-            turn(box,10,90*n,function () {
-                doGo(box,data.dir);
+            turn(box,270,function () {
+                doGo(box,270);
             });
             break;
         case "MOV BOT":
-            n = 1- data.dir;
-            data.dir=1;
-            turn(box,10,90*n,function () {
-                doGo(box,data.dir);
+            turn(box,90,function () {
+                doGo(box,90);
             });
             break;
     }
 }
 
+//前进
+function go(obj,deg,endfn) {
+    var disX = obj.offsetLeft;
+    var disY = obj.offsetTop;
+    switch(true){
+        case deg === 0:
+            obj.style.left = disX + 30 + 'px';
+            break;
+        case deg === 90||deg === -270:
+            obj.style.top = disY + 30 + 'px';
+            break;
+        case deg === -90||deg === 270:
+            obj.style.top = disY - 30 + 'px';
+            break;
+        case deg === 180||deg ===-180:
+            obj.style.left = disX - 30 + 'px';
+            break;
+    }
+    endfn&&endfn();
+}
+//边界判定
+function doGo(obj,deg) {
+    var disX = obj.offsetLeft;
+    var disY = obj.offsetTop;
+    switch (true){
+        case deg === 0 && disX >= 300:
+        case (deg === 90||deg === -270)&&(disY >= 300):
+        case (deg === -90||deg === 270)&&(disY <= 30):
+        case (deg === 180||deg ===-180)&&(disX <= 30):
+            alert("到头了!");
+            break;
+        default:
+            go(obj,deg);
+            break;
+    }
+}
