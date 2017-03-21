@@ -9,13 +9,46 @@ function create() {
 }
 create();   //创建格子
 
-//数据记录
 var data = {
-    dir:0,      //记录方向,left=0 ,bottom=1, right=2, top=3;
-    deg:0,      //记录旋转的角度(-360~360);
-    flag:true   //防止定时器反复多次触发的开关
+    deg:0       //记录旋转的角度(-360~360);
 };
 
+//旋转
+function turn(obj,deg,endfn) {
+    obj.style.transform = 'rotate('+ deg +'deg)';
+    endfn&&endfn();
+}
+//前进
+function go(obj,deg,endfn) {
+    var disX = obj.offsetLeft;
+    var disY = obj.offsetTop;
+    if(deg === 0){
+        obj.style.left = disX + 30 + 'px';
+    }else if(deg === 90||deg === -270){
+        obj.style.top = disY + 30 + 'px';
+    }else if(deg === -90||deg === 270){
+        obj.style.top = disY - 30 + 'px';
+    }else if(deg === 180||deg ===-180){
+        obj.style.left = disX - 30 + 'px';
+    }
+    endfn&&endfn();
+}
+//边界判定
+function doGo(obj,deg) {
+    var disX = obj.offsetLeft;
+    var disY = obj.offsetTop;
+    if(deg === 0 && disX >= 300){
+        alert('到头了');
+    }else if((deg === 90||deg === -270)&&(disY >= 300)){
+        alert('到头了');
+    }else if((deg === -90||deg === 270)&&(disY <= 30)){
+        alert('到头了');
+    }else if((deg === 180||deg ===-180)&&(disX <= 30)){
+        alert('到头了');
+    }else {
+        go(obj,deg);
+    }
+}
 //运转
 function control() {
     var box = document.getElementById('box');
@@ -25,39 +58,41 @@ function control() {
     switch (command){
         /*只转向,不前进*/
         case "TUN LEF":
-            turn(box,-10,90,function () {
-                data.dir--;                 //把方向数值变化放在选择动画的回调函数里,防止多次点击时实际动画效果和方向数值不一致
-                if(data.dir<0){data.dir += 4}
-            });
+            data.deg -= 90;
+            if(data.deg < -270){
+                data.deg += 360;
+            }
+            turn(box,data.deg);
             break;
         case "TUN RIG":
-            turn(box,10,90,function () {
-                data.dir++;
-                if(data.dir>3){data.dir = data.dir-4}
-            });
+            data.deg += 90;
+            if(data.deg > 270){
+                data.deg -= 360;
+            }
+            turn(box,data.deg);
             break;
         case "TUN BAC":
-            turn(box,10,180,function () {
-                data.dir += 2;
-                if(data.dir>3){data.dir = data.dir-4}
-            });
+            data.deg -= 180;
+            if(data.deg < -270){
+                data.deg += 360;
+            }
+            turn(box,data.deg);
             break;
-        /*按当前方向前进*/
         case "GO":
-            doGo(box,data.dir);
+            doGo(box,data.deg);
             break;
         /*不方块按当前的朝向前进*/
         case "TRA LEF":
-            doGo(box,2);
+            doGo(box,180);
             break;
         case "TRA TOP":
-            doGo(box,3);
+            doGo(box,270);
             break;
         case "TRA RIG":
             doGo(box,0);
             break;
         case "TRA BOT":
-            doGo(box,1);
+            doGo(box,90);
             break;
         /*转向之后接着前进*/
         case "MOV LEF":
@@ -91,68 +126,3 @@ function control() {
     }
 }
 
-//边界判定&前进
-function doGo(obj,dir){
-    var disX = parseFloat(getStyle(obj,'left'));
-    var disY = parseFloat(getStyle(obj,'top'));
-    switch(true){
-        case (dir===2 && disX<=30):
-        /*合并下方*/
-        case (dir===1 && disY>=300):
-        /*合并下方*/
-        case (dir===0 && disX>=300):
-        /*合并下方*/
-        case (dir===3 && disY<=30):
-            alert('到头了');
-            break;
-        case (dir===0 || dir===2):
-            goTo(obj,'left',dir);
-            break;
-        case (dir===1 || dir===3):
-            goTo(obj,'top',dir);
-            break;
-    }
-}
-//前进动画
-function goTo(obj,attr,dir){
-    if(!data.flag){return;}
-    data.flag = false;      //关闭开关,防止反复
-    if(dir===2||dir===3){dir=-1}else{dir=1}
-    var target = 0;
-    var dis = parseFloat(getStyle(obj,attr));
-    var timer = setInterval(function () {
-        target += 2;
-        obj.style[attr] = (dis + target*dir) + 'px';
-        if(target===30){
-            clearInterval(timer);
-            data.flag = true;   //运转结束,打开开关
-        }
-    },20)
-}
-//旋转动画
-function turn(obj,speed,target,endFn){
-    if(target===0){     //target为0,说明不用旋转,直接结束
-        endFn&&endFn();
-        return;
-    }
-    if(!data.flag){return;}     //关闭开关,防止反复
-    data.flag = false;
-    if(target<0){speed=-speed;target = Math.abs(target)}    //根据target的值来改变旋转方向
-    if(target===270){speed=-speed;target=90}
-    var dir = 0;    //记录旋转了多少度,来设置结束动画的点(90或180)
-    var timer = setInterval(function () {
-        dir += speed;
-        data.deg = (data.deg + speed)%360;      //角度控制在(-360~360)方便计算
-        obj.style.transform = "rotate("+ data.deg +"deg)";
-        if(Math.abs(dir)===target){
-            clearInterval(timer);
-            data.flag = true;       //运转结束,打开开关
-            endFn&&endFn();
-        }
-    },20)
-}
-
-//获取属性值
-function getStyle(obj,attr) {
-    return obj.currentStyle? obj.currentStyle[attr] : window.getComputedStyle(obj)[attr];
-}
