@@ -19,7 +19,7 @@ var data = {
 //运转
 function control() {
     var box = document.getElementById('box');
-    var command = document.getElementsByTagName('input')[0].value.trim();
+    var command = this.value.trim();
     var btnBox = document.getElementById('btnBox');
     var n;  //记录当前方向和上次方向的差值
     switch (command){
