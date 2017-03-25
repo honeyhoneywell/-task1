@@ -18,7 +18,7 @@ function control() {
     var command = this.value;
     switch (command){
         case 'GO':
-            go(data.deg);
+            confineJudge(data.deg);
             break;
         case 'TUN LEF':
             data.deg -= 90;
@@ -34,16 +34,16 @@ function control() {
             break;
 
         case 'TRA LEF':
-            go(180);
+            confineJudge(180);
             break;
         case 'TRA TOP':
-            go(270);
+            confineJudge(270);
             break;
         case 'TRA RIG':
-            go(0);
+            confineJudge(0);
             break;
         case 'TRA BOT':
-            go(90);
+            confineJudge(90);
             break;
 
         case 'MOV LEF':
@@ -54,7 +54,7 @@ function control() {
             }else if(dirJudge(data.deg) ===3){
                 data.deg -=90;
             }
-            go(data.deg);
+            confineJudge(data.deg);
             turn();
             break;
         case 'MOV TOP':
@@ -65,7 +65,7 @@ function control() {
             }else if(dirJudge(data.deg) ===2){
                 data.deg +=90;
             }
-            go(data.deg);
+            confineJudge(data.deg);
             turn();
             break;
         case 'MOV RIG':
@@ -76,7 +76,7 @@ function control() {
             }else if(dirJudge(data.deg) ===3){
                 data.deg +=90;
             }
-            go(data.deg);
+            confineJudge(data.deg);
             turn();
             break;
         case 'MOV BOT':
@@ -87,7 +87,7 @@ function control() {
             }else if(dirJudge(data.deg) ===3){
                 data.deg +=180;
             }
-            go(data.deg);
+            confineJudge(data.deg);
             turn();
             break;
     }
@@ -137,12 +137,14 @@ function confineJudge(deg) {
     var disX = ball.offsetLeft;
     var disY = ball.offsetTop;
     switch (true){
-        case dirJudge(deg) === 0 || disX>=270:
-        case dirJudge(deg) === 1 || disY>=270:
-        case dirJudge(deg) === 2 || disX<=30:
-        case dirJudge(deg) === 3 || disY<=30:
+        case (dirJudge(deg) === 0 && disX>=270):
+        case (dirJudge(deg) === 1 && disY>=270):
+        case (dirJudge(deg) === 2 && disX<=0):
+        case (dirJudge(deg) === 3 && disY<=0):
             alert('到头了');
-            return;
+            break;
+        default:
+            go(deg);
     }
 }
 
